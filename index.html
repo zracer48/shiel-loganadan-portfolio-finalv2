@@ -3,16 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shiel Loganadan | MPRTSM ePortfolio Draft</title>
+  <title>Shiel Loganadan | MPRTSM ePortfolio</title>
   <style>
     :root {
-      --bg: #f6f8fb;
+      --bg: #f4f7fb;
       --text: #1f2937;
       --muted: #5b6472;
       --card: #ffffff;
       --accent: #1f4e79;
+      --accent-dark: #12324d;
+      --accent-soft: #e8f0f8;
       --accent-2: #2d6a4f;
+      --accent-3: #f3f7fc;
       --border: #d9e1ea;
+      --shadow: 0 8px 22px rgba(16,24,40,0.07);
     }
 
     * { box-sizing: border-box; }
@@ -26,18 +30,50 @@
       font-family: Arial, Helvetica, sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
     header {
-      background: linear-gradient(135deg, #12324d, #1f4e79);
+      background: linear-gradient(135deg, #12324d, #1f4e79 60%, #2f6b94);
       color: #fff;
-      padding: 56px 20px 40px;
+      padding: 56px 20px 42px;
     }
 
     .container {
-      max-width: 1100px;
+      max-width: 1120px;
       margin: 0 auto;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 0.8fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 18px;
+      padding: 20px;
+      backdrop-filter: blur(4px);
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 18px 0 0;
+    }
+
+    .hero-badge {
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 700;
     }
 
     nav {
@@ -50,7 +86,7 @@
     }
 
     .nav-wrap {
-      max-width: 1100px;
+      max-width: 1120px;
       margin: 0 auto;
       padding: 12px 20px;
       display: flex;
@@ -66,8 +102,12 @@
       font-weight: 700;
     }
 
+    nav a:hover {
+      text-decoration: underline;
+    }
+
     main {
-      padding: 28px 20px 48px;
+      padding: 30px 20px 54px;
     }
 
     section {
@@ -76,7 +116,8 @@
 
     h1 {
       margin: 0 0 10px;
-      font-size: 2.2rem;
+      font-size: 2.4rem;
+      line-height: 1.15;
     }
 
     h2 {
@@ -84,6 +125,7 @@
       color: var(--accent);
       border-bottom: 2px solid var(--border);
       padding-bottom: 8px;
+      font-size: 1.55rem;
     }
 
     h3 {
@@ -93,46 +135,139 @@
 
     .subtitle {
       font-size: 1.08rem;
-      max-width: 850px;
+      max-width: 860px;
+      margin: 0 0 10px;
     }
 
     .card {
       background: var(--card);
       border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .intro-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .mini-panel {
+      background: var(--accent-3);
+      border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 20px;
-      box-shadow: 0 4px 16px rgba(16,24,40,0.05);
+      padding: 18px;
+    }
+
+    .mini-panel h3 {
+      margin-bottom: 12px;
+    }
+
+    .mini-panel ul {
+      margin: 8px 0 0 18px;
+      padding: 0;
+    }
+
+    .quote-box {
+      border-left: 5px solid var(--accent);
+      background: #f8fbff;
+      padding: 16px 18px;
+      border-radius: 0 14px 14px 0;
+      color: #243445;
+      margin-top: 14px;
+      font-size: 0.98rem;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 16px;
+    }
+
+    .domain-card,
+    .highlight-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .highlight-card {
+      background: linear-gradient(180deg, #ffffff, #f9fbfe);
     }
 
     .artifact-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 18px;
     }
 
     .artifact {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 18px;
-      box-shadow: 0 4px 16px rgba(16,24,40,0.05);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .artifact-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 14px;
     }
 
     .pill {
       display: inline-block;
-      padding: 5px 10px;
+      padding: 6px 11px;
       border-radius: 999px;
-      font-size: 0.8rem;
+      font-size: 0.79rem;
       font-weight: 700;
       background: #e8f0f8;
       color: var(--accent);
-      margin-bottom: 10px;
+      margin-bottom: 4px;
+    }
+
+    .artifact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 14px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.92rem;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-dark);
+    }
+
+    .btn-secondary {
+      background: var(--accent-soft);
+      color: var(--accent);
+      border: 1px solid #c9d9ea;
+    }
+
+    .btn-secondary:hover {
+      background: #dfeaf5;
     }
 
     .resume-box {
@@ -140,6 +275,13 @@
       border-radius: 14px;
       padding: 18px;
       background: #f9fbfd;
+    }
+
+    .resume-actions {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
     ul {
@@ -158,30 +300,78 @@
       text-align: center;
     }
 
-    .two-col {
+    .section-intro {
+      max-width: 900px;
+      margin-bottom: 16px;
+      color: #324455;
+    }
+
+    .artifact-meta {
+      font-size: 0.94rem;
+      color: var(--muted);
+      margin-top: -4px;
+    }
+
+    .reflection-layout {
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
+      grid-template-columns: 1fr 0.8fr;
       gap: 18px;
+      align-items: start;
+    }
+
+    .reflection-points {
+      background: #f7fbf8;
+      border: 1px solid #d5e6dc;
+      border-radius: 16px;
+      padding: 18px;
+    }
+
+    .reflection-points ul {
+      margin: 10px 0 0 18px;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .intro-layout,
+      .reflection-layout {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (max-width: 800px) {
-      .two-col { grid-template-columns: 1fr; }
-      h1 { font-size: 1.8rem; }
+      h1 { font-size: 1.95rem; }
     }
   </style>
 </head>
 <body>
   <header>
     <div class="container">
-      <h1>Shiel Loganadan</h1>
-      <p class="subtitle">Master’s in Parks, Recreation, Tourism and Sport Management (MPRTSM) | Working ePortfolio Draft</p>
-      <p class="subtitle">This portfolio presents graduate-level work in facility and venue operations, strategic planning, event planning, risk management, participant experience, and professional communication. More importantly, it reflects how my thinking has developed across the program, especially in learning how operational decisions influence safety, efficiency, and the overall quality of the guest experience.</p>
+      <div class="hero-grid">
+        <div>
+          <h1>Shiel Loganadan</h1>
+          <p class="subtitle">Master’s in Parks, Recreation, Tourism and Sport Management (MPRTSM)</p>
+          <p class="subtitle">This portfolio highlights my graduate work in facility and venue operations, strategic planning, event planning, risk management, participant experience, and professional communication. More importantly, it shows how my thinking developed from simply understanding course concepts to making and defending decisions that reflect real professional practice.</p>
+          <div class="hero-badges">
+            <span class="hero-badge">Facility Operations</span>
+            <span class="hero-badge">Event Planning</span>
+            <span class="hero-badge">Risk Management</span>
+            <span class="hero-badge">Guest Experience</span>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <h3 style="margin-top:0; color:#fff;">Professional Focus</h3>
+          <p style="margin:0 0 10px;">I am especially interested in sport and recreation environments where operations, safety, and guest experience all have to work together in a visible and high-pressure setting.</p>
+          <p style="margin:0;">This site is organized around the artifacts that best show how I approached planning, decision-making, and real-world operational problems during the program.</p>
+        </div>
+      </div>
     </div>
   </header>
 
   <nav>
     <div class="nav-wrap">
       <a href="#intro">Introduction</a>
+      <a href="#highlights">Highlights</a>
       <a href="#resume">Resume</a>
       <a href="#domains">Domains</a>
       <a href="#facility">Facility & Venue Operations</a>
@@ -195,11 +385,53 @@
   <main class="container">
     <section id="intro" class="card">
       <h2>Professional Introduction</h2>
-      <p>My name is Shiel Loganadan, and I am currently completing my Master’s in Parks, Recreation, Tourism and Sport Management (MPRTSM). I am interested in pursuing a career in sport and recreation facility operations and event management, particularly in environments where operations, safety, and guest experience all have to work together at a high level.</p>
-      <p>Coming into this program, I had a general understanding of how sport and recreation organizations function, but most of that understanding was from the outside looking in. I could usually tell when something seemed organized, efficient, or well run, but I did not fully understand how much planning and coordination it took behind the scenes to create that result. One of the biggest changes for me throughout the program has been learning to think less like an observer and more like someone who is actually responsible for those decisions.</p>
-      <p>Across my coursework, I was often put in situations where I had to do more than explain ideas from class. I had to make choices, defend those choices, and think through the consequences of different approaches. In assignments related to facility planning, booking policies, emergency action planning, and event risk, I had to decide what should be prioritized, what trade-offs were reasonable, and what a manager would need to consider in practice. Those choices were not always simple. In many cases, I had to weigh efficiency against safety, revenue against access, or detail against usability. Working through those kinds of decisions made the material feel much more real and also helped me better understand the responsibilities that come with managing sport and recreation settings.</p>
-      <p>Another major shift in my thinking was how I came to understand guest experience. Earlier in the program, I tended to think about experience mostly in terms of what a participant or attendee directly sees. Over time, I started to recognize that the quality of an experience is often shaped by things the guest never notices, such as staffing structure, communication systems, crowd flow, emergency procedures, and preparation before the event even begins. That realization changed the way I approached assignments because I started paying more attention to the hidden operational decisions that support a smooth, safe, and enjoyable experience.</p>
-      <p>This portfolio reflects that development. Rather than treating it as just a collection of assignments, I see it as a record of how my thinking has changed during the program. The artifacts show not only the types of work I completed, but also how I started to take more ownership over my decisions, how I approached different problems, and how I began connecting academic assignments to the realities of professional practice in sport and recreation management.</p>
+      <div class="intro-layout">
+        <div>
+          <p>My name is Shiel Loganadan, and I am currently completing my Master’s in Parks, Recreation, Tourism and Sport Management (MPRTSM). I am interested in pursuing a career in sport and recreation facility operations and event management, particularly in environments where operations, safety, and guest experience all have to work together at a high level.</p>
+
+          <p>Coming into this program, I had a general understanding of how sport and recreation organizations function, but most of that understanding was from the outside looking in. I could usually tell when something seemed organized, efficient, or well run, but I did not fully understand how much planning and coordination it took behind the scenes to create that result. One of the biggest changes for me throughout the program has been learning to think less like an observer and more like someone who is actually responsible for those decisions.</p>
+
+          <p>Across my coursework, I was often put in situations where I had to do more than explain ideas from class. I had to make choices, defend those choices, and think through the consequences of different approaches. In assignments related to facility planning, booking policies, emergency action planning, and event risk, I had to decide what should be prioritized, what trade-offs were reasonable, and what a manager would need to consider in practice. Those choices were not always simple. In many cases, I had to weigh efficiency against safety, revenue against access, or detail against usability.</p>
+
+          <div class="quote-box">
+            One of the biggest takeaways from this program has been realizing that a strong guest experience is often built by decisions the guest never sees directly: planning, staffing, communication, preparation, and risk management.
+          </div>
+        </div>
+
+        <aside class="mini-panel">
+          <h3>At a Glance</h3>
+          <ul>
+            <li>Graduate focus in sport and recreation management</li>
+            <li>Strong interest in venue operations and event environments</li>
+            <li>Experience analyzing Allegiant Stadium across multiple assignments</li>
+            <li>Repeated coursework emphasis on safety, planning, and operational decision-making</li>
+            <li>Professional goal: contribute to organizations that value efficient operations and strong participant experiences</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section id="highlights">
+      <h2>Portfolio Highlights</h2>
+      <p class="section-intro">These artifacts represent the work that best captures my growth in operational thinking, strategic decision-making, safety planning, and professional communication.</p>
+      <div class="grid">
+        <div class="highlight-card">
+          <h3>Facility Planning</h3>
+          <p>Analyzed Allegiant Stadium as a multipurpose venue and evaluated how design choices affect circulation, flexibility, and operations.</p>
+        </div>
+        <div class="highlight-card">
+          <h3>Emergency Planning</h3>
+          <p>Built a structured emergency action plan focused on chain of command, communication flow, and realistic usability in high-pressure settings.</p>
+        </div>
+        <div class="highlight-card">
+          <h3>Booking Strategy</h3>
+          <p>Developed a booking policy that required weighing revenue priorities against venue limitations and broader organizational goals.</p>
+        </div>
+        <div class="highlight-card">
+          <h3>Staff Training</h3>
+          <p>Created a frontline training framework centered on proactive behavior, service consistency, and safety awareness.</p>
+        </div>
+      </div>
     </section>
 
     <section id="resume" class="card">
@@ -208,6 +440,7 @@
         <h3>Embedded Resume Draft</h3>
         <p><strong>Shiel Loganadan</strong><br />Naples, Florida<br />Career Interest: Sport and Recreation Management, Facility Operations, Event Planning, Guest Experience</p>
         <p><strong>Education</strong><br />Master’s in Parks, Recreation, Tourism and Sport Management (in progress)</p>
+
         <p><strong>Professional Strengths</strong></p>
         <ul>
           <li>Facility and venue operations</li>
@@ -215,137 +448,260 @@
           <li>Strategic planning and risk management</li>
           <li>Professional communication and teamwork</li>
         </ul>
+
         <p><strong>Applied Experience</strong></p>
         <ul>
           <li>Developed facility planning and venue strategy projects</li>
           <li>Created risk assessment and emergency action planning documents</li>
           <li>Designed staff training frameworks and booking policies for sport venues</li>
         </ul>
-        <p class="small">Replace or supplement this section with a downloadable PDF resume if needed for final submission.</p>
+
+        <div class="resume-actions">
+          <a class="btn btn-primary" href="files/shiel-loganadan-resume.pdf" target="_blank">View Resume</a>
+          <a class="btn btn-secondary" href="files/shiel-loganadan-resume.pdf" download>Download Resume</a>
+        </div>
+
+        <p class="small">Replace the resume file path above with your actual uploaded PDF path if needed.</p>
       </div>
     </section>
 
     <section id="domains" class="card">
       <h2>Organizing Domains</h2>
       <div class="grid">
-        <div>
+        <div class="domain-card">
           <h3>Facility and Venue Operations</h3>
-          <p>This domain includes work where I had to think through how facilities function on a practical level rather than just describe them in general terms. These artifacts focus on issues such as crowd movement, staffing, safety, physical design, and operational efficiency. One of the main things I learned through this work is that even decisions that seem small on paper can have a major impact once they affect thousands of guests, employees, or participants in a live setting.</p>
+          <p>This domain includes work where I had to think through how facilities function on a practical level rather than just describe them in general terms. These artifacts focus on issues such as crowd movement, staffing, safety, physical design, and operational efficiency.</p>
         </div>
-        <div>
+        <div class="domain-card">
           <h3>Strategic Planning and Organizational Management</h3>
-          <p>This domain reflects assignments where I had to think beyond one event or one operational issue and instead consider larger priorities and long-term decisions. These projects required me to work through trade-offs involving scheduling, revenue, resource allocation, and organizational goals. They helped me understand that strategic planning is not just about growth or efficiency, but also about deciding what an organization wants to prioritize and why.</p>
+          <p>This domain reflects assignments where I had to think beyond one event or one operational issue and instead consider larger priorities and long-term decisions. These projects required me to work through trade-offs involving scheduling, revenue, resource allocation, and organizational goals.</p>
         </div>
-        <div>
+        <div class="domain-card">
           <h3>Event Planning and Participant Experience</h3>
-          <p>This domain focuses on how events are built from both an operational and participant perspective. The artifacts in this section reflect planning around logistics, safety, staffing, and the overall event experience. Through this work, I came to understand that successful events are usually the result of preparation that prevents problems before guests ever notice them, not just quick responses when something goes wrong.</p>
+          <p>This domain focuses on how events are built from both an operational and participant perspective. The artifacts in this section reflect planning around logistics, safety, staffing, and the overall event experience.</p>
         </div>
-        <div>
+        <div class="domain-card">
           <h3>Research, Analysis, and Professional Communication</h3>
-          <p>This domain highlights how I developed my ability to present information in a way that is clear, usable, and more appropriate for professional settings. In several of these projects, I had to move away from writing only for a classroom audience and start thinking about how a manager, executive, or organization would actually use the information. That pushed me to improve not just the content of my work, but how I framed and communicated it.</p>
+          <p>This domain highlights how I developed my ability to present information in a way that is clear, usable, and more appropriate for professional settings.</p>
         </div>
       </div>
     </section>
 
     <section id="facility">
       <h2>Facility and Venue Operations</h2>
+      <p class="section-intro">This work shows how I began connecting physical venue design to real operational outcomes such as crowd flow, safety, staffing, and flexibility.</p>
+
       <div class="artifact-grid">
         <article class="artifact">
-          <span class="pill">SEVM Facility Planning Project</span>
-          <h3>Facility Planning Project</h3>
+          <div class="artifact-top">
+            <div>
+              <span class="pill">SEVM Facility Planning Project</span>
+              <h3>Facility Planning Project</h3>
+              <div class="artifact-meta">Featured artifact in venue analysis and operational thinking</div>
+            </div>
+          </div>
+
           <p><strong>Context:</strong> A comprehensive analysis of Allegiant Stadium examining venue design, operational considerations, and the strategic role of a multipurpose stadium in a tourism-driven market.</p>
           <p><strong>My Role:</strong> I independently researched, analyzed, and developed the written facility planning project.</p>
           <p><strong>Skills Demonstrated:</strong> Facility planning, venue operations analysis, tourism market understanding, strategic facility evaluation.</p>
-          <p><strong>Reflection Draft:</strong> When I first started this project, I approached it mostly as a research assignment and focused on gathering information about Allegiant Stadium. As I worked further into it, I realized that simply describing the venue was not enough. I had to start asking why certain design and operational decisions were made and what impact those choices would actually have on the way the stadium functions. One of the biggest challenges was connecting physical features to operational outcomes. For example, I initially saw entry points, seating layout, and circulation areas as design details, but through the project I started viewing them as factors that directly influence crowd flow, staffing needs, guest access, and even emergency response. I also made a deliberate decision to focus on the stadium as a multipurpose venue in a tourism-heavy market rather than only as a football facility. That changed the entire lens of my analysis because flexibility, scheduling, and venue adaptability became just as important as sports-specific design. This project helped me move beyond surface-level description and start thinking about facilities as operating systems that have to support safety, efficiency, and guest experience all at the same time.</p>
+          <p><strong>Reflection:</strong> When I first started this project, I approached it mostly as a research assignment and focused on gathering information about Allegiant Stadium. As I worked further into it, I realized that simply describing the venue was not enough. I had to start asking why certain design and operational decisions were made and what impact those choices would actually have on the way the stadium functions. One of the biggest challenges was connecting physical features to operational outcomes. For example, I initially saw entry points, seating layout, and circulation areas as design details, but through the project I started viewing them as factors that directly influence crowd flow, staffing needs, guest access, and even emergency response.</p>
+
+          <div class="artifact-actions">
+            <a class="btn btn-primary" href="files/facility-planning-project.pdf" target="_blank">View Artifact</a>
+            <a class="btn btn-secondary" href="files/facility-planning-project.pdf" download>Download</a>
+          </div>
         </article>
+
         <article class="artifact">
-          <span class="pill">Risk Management / Venue Safety Coursework</span>
-          <h3>Facility Emergency Action Plan</h3>
+          <div class="artifact-top">
+            <div>
+              <span class="pill">Risk Management / Venue Safety Coursework</span>
+              <h3>Facility Emergency Action Plan</h3>
+              <div class="artifact-meta">Emergency response structure and venue safety planning</div>
+            </div>
+          </div>
+
           <p><strong>Context:</strong> Development of an emergency response framework outlining staff roles, communication procedures, evacuation planning, and safety coordination in a large stadium environment.</p>
           <p><strong>My Role:</strong> I created the emergency action plan based on best practices and course guidance.</p>
           <p><strong>Skills Demonstrated:</strong> Risk management, emergency preparedness, communication planning, venue safety protocol design.</p>
-          <p><strong>Reflection Draft:</strong> This assignment forced me to think in a much more practical and procedural way than many of my other projects. It is easy to talk about safety in broad terms, but it is much harder to build a plan that people could actually use in a high-pressure situation. One of the main issues I ran into was deciding how detailed the emergency action plan should be. My first instinct was to include as much information as possible because I wanted the plan to feel complete. As I worked through it, I realized that too much detail can make a plan harder to follow during an emergency, especially when people need clear direction quickly. I had to rethink parts of the document and focus more on clarity, chain of command, and communication flow. Another thing that stood out to me was how important role definition is in emergency planning. It is not enough to say staff should respond; there has to be a clear understanding of who does what, who communicates with whom, and how information moves under stress. This project changed how I think about safety planning because I no longer see it as just identifying risks. I see it as building a system that has to work in real time, under pressure, with real people carrying it out.</p>
+          <p><strong>Reflection:</strong> This assignment forced me to think in a much more practical and procedural way than many of my other projects. It is easy to talk about safety in broad terms, but it is much harder to build a plan that people could actually use in a high-pressure situation. One of the main issues I ran into was deciding how detailed the emergency action plan should be. My first instinct was to include as much information as possible because I wanted the plan to feel complete. As I worked through it, I realized that too much detail can make a plan harder to follow during an emergency.</p>
+
+          <div class="artifact-actions">
+            <a class="btn btn-primary" href="files/emergency-action-plan.pdf" target="_blank">View Artifact</a>
+            <a class="btn btn-secondary" href="files/emergency-action-plan.pdf" download>Download</a>
+          </div>
         </article>
       </div>
     </section>
 
     <section id="strategy">
       <h2>Strategic Planning and Organizational Management</h2>
+      <p class="section-intro">These artifacts reflect how I worked through trade-offs involving calendar use, organizational priorities, communication, and executive-level framing.</p>
+
       <div class="artifact-grid">
         <article class="artifact">
-          <span class="pill">Sport Venue Management Coursework</span>
-          <h3>Allegiant Stadium Booking Policy</h3>
+          <div class="artifact-top">
+            <div>
+              <span class="pill">Sport Venue Management Coursework</span>
+              <h3>Allegiant Stadium Booking Policy</h3>
+              <div class="artifact-meta">Scheduling priorities, event tiers, and strategic trade-offs</div>
+            </div>
+          </div>
+
           <p><strong>Context:</strong> A structured booking policy outlining scheduling priorities, event tiers, and operational decision-making processes used to manage event calendars at a large multipurpose venue.</p>
           <p><strong>My Role:</strong> I developed the booking policy and supporting rationale independently.</p>
           <p><strong>Skills Demonstrated:</strong> Strategic planning, event prioritization, revenue-focused decision-making, policy development.</p>
-          <p><strong>Reflection Draft:</strong> This assignment stood out to me because it required me to think less like a student completing a paper and more like a decision-maker who would actually have to defend a policy. Building the booking policy meant deciding how a venue should prioritize events when there are competing demands for space, staff time, and calendar availability. One of the hardest parts was that there was no perfect answer. I had to think about whether revenue-generating events should always come first or whether there are situations where smaller community-oriented events should receive priority because of the venue’s broader purpose or public value. I also had to consider the operational side of scheduling, including turnaround time between events, staffing limits, and the strain that frequent bookings can place on a facility. That pushed me to think more realistically about the difference between maximizing the calendar and managing it responsibly. What I took from this project is that strategic planning often comes down to making trade-offs and being able to justify them. A policy is not valuable just because it is organized on paper. It has to reflect the goals of the venue and also be realistic enough to work in practice.</p>
+          <p><strong>Reflection:</strong> This assignment stood out to me because it required me to think less like a student completing a paper and more like a decision-maker who would actually have to defend a policy. Building the booking policy meant deciding how a venue should prioritize events when there are competing demands for space, staff time, and calendar availability. One of the hardest parts was that there was no perfect answer. I had to think about whether revenue-generating events should always come first or whether there are situations where smaller community-oriented events should receive priority.</p>
+
+          <div class="artifact-actions">
+            <a class="btn btn-primary" href="files/booking-policy.pdf" target="_blank">View Artifact</a>
+            <a class="btn btn-secondary" href="files/booking-policy.pdf" download>Download</a>
+          </div>
         </article>
+
         <article class="artifact">
-          <span class="pill">Facility Planning Coursework</span>
-          <h3>Venue Profile and Executive Briefing</h3>
+          <div class="artifact-top">
+            <div>
+              <span class="pill">Facility Planning Coursework</span>
+              <h3>Venue Profile and Executive Briefing</h3>
+              <div class="artifact-meta">Executive communication and concise professional writing</div>
+            </div>
+          </div>
+
           <p><strong>Context:</strong> A high-level executive overview of Allegiant Stadium including mission, operational scope, venue design features, and its role as a tourism-driven destination venue.</p>
           <p><strong>My Role:</strong> I prepared the executive briefing and summarized the venue’s strategic importance.</p>
           <p><strong>Skills Demonstrated:</strong> Executive communication, strategic analysis, concise professional writing, organizational evaluation.</p>
-          <p><strong>Reflection Draft:</strong> This assignment challenged me in a different way because the goal was not just to show that I understood the venue, but to communicate that understanding in a way that would actually be useful to a professional audience. One of the main difficulties was deciding what information to include and what to leave out. In a normal academic assignment, there is often value in being highly detailed. In this case, I had to be much more selective and think about what an executive or decision-maker would actually need to know. That forced me to focus on relevance, structure, and clarity rather than simply trying to cover everything. I also had to think more carefully about tone and framing. A professional briefing has to feel direct and useful, not overly academic. This assignment helped me realize that communication is not just about whether information is correct, but whether it is presented in a way that fits the audience and supports action. That was an important step for me because it pushed me to think more intentionally about how professional writing differs from classroom writing.</p>
+          <p><strong>Reflection:</strong> This assignment challenged me in a different way because the goal was not just to show that I understood the venue, but to communicate that understanding in a way that would actually be useful to a professional audience. One of the main difficulties was deciding what information to include and what to leave out. In a normal academic assignment, there is often value in being highly detailed. In this case, I had to be much more selective and think about what an executive or decision-maker would actually need to know.</p>
+
+          <div class="artifact-actions">
+            <a class="btn btn-primary" href="files/executive-briefing.pdf" target="_blank">View Artifact</a>
+            <a class="btn btn-secondary" href="files/executive-briefing.pdf" download>Download</a>
+          </div>
         </article>
       </div>
     </section>
 
     <section id="events">
       <h2>Event Planning and Participant Experience</h2>
+      <p class="section-intro">This section highlights planning that centered on what can go wrong, how staff respond, and how preparation influences the participant experience long before the event begins.</p>
+
       <div class="artifact-grid">
         <article class="artifact">
-          <span class="pill">Event Operations / Risk Management Coursework</span>
-          <h3>Event Risk Assessment</h3>
+          <div class="artifact-top">
+            <div>
+              <span class="pill">Event Operations / Risk Management Coursework</span>
+              <h3>Event Risk Assessment</h3>
+              <div class="artifact-meta">Hazard prioritization and proactive event planning</div>
+            </div>
+          </div>
+
           <p><strong>Context:</strong> An operational risk analysis of a large national touring concert event at Allegiant Stadium, identifying crowd, medical, and event-day hazards and proposing mitigation strategies.</p>
           <p><strong>My Role:</strong> I completed the risk analysis and developed the proposed mitigation measures.</p>
           <p><strong>Skills Demonstrated:</strong> Event risk assessment, hazard analysis, proactive planning, operational decision-making.</p>
-          <p><strong>Reflection Draft:</strong> What made this assignment different from many others was that it required me to think ahead instead of reacting to a problem after it happens. I had to consider what could realistically go wrong during a major event and decide which risks deserved the most attention. Early in the process, I found myself identifying too many possible issues without really evaluating which ones mattered most. Over time, I realized that a good risk assessment is not just a long list of hazards. It requires prioritizing risks based on both likelihood and impact so that resources and planning efforts are directed where they are actually needed. That forced me to be more selective and more realistic. It also helped me understand that risk management is not a separate step that happens at the end of planning. It should shape decisions throughout the entire event process. This project changed how I think about planning because I now pay much more attention to what could disrupt operations, how those disruptions could affect people, and what can be done ahead of time to reduce that exposure.</p>
+          <p><strong>Reflection:</strong> What made this assignment different from many others was that it required me to think ahead instead of reacting to a problem after it happens. I had to consider what could realistically go wrong during a major event and decide which risks deserved the most attention. Early in the process, I found myself identifying too many possible issues without really evaluating which ones mattered most. Over time, I realized that a good risk assessment is not just a long list of hazards.</p>
+
+          <div class="artifact-actions">
+            <a class="btn btn-primary" href="files/event-risk-assessment.pdf" target="_blank">View Artifact</a>
+            <a class="btn btn-secondary" href="files/event-risk-assessment.pdf" download>Download</a>
+          </div>
         </article>
+
         <article class="artifact">
-          <span class="pill">Sport Venue Operations Coursework</span>
-          <h3>Frontline Staff Training Framework</h3>
+          <div class="artifact-top">
+            <div>
+              <span class="pill">Sport Venue Operations Coursework</span>
+              <h3>Frontline Staff Training Framework</h3>
+              <div class="artifact-meta">Service consistency, awareness, and proactive staff behavior</div>
+            </div>
+          </div>
+
           <p><strong>Context:</strong> A structured staff training model focused on proactive vigilance, guest service, and safety awareness for frontline stadium employees in high-capacity environments.</p>
           <p><strong>My Role:</strong> I designed the training framework and wrote the supporting material.</p>
           <p><strong>Skills Demonstrated:</strong> Staff development, customer experience planning, safety culture, operational training design.</p>
-          <p><strong>Reflection Draft:</strong> This project made me think much more seriously about how staff behavior shapes the success of an operation. It is easy to assume that once policies and procedures are written, the operation will run the way it was designed. This assignment pushed me to think about the fact that staff are the people who actually carry those systems out, and the guest experience can be heavily influenced by how prepared, alert, and consistent they are. One choice I made in building this framework was to emphasize proactive behavior rather than only reactive response. Instead of focusing solely on what staff should do after a problem appears, I wanted the training to reinforce awareness, communication, and prevention. That reflected a bigger lesson for me: strong operations depend not only on having a plan, but on building a staff culture that supports that plan in real time. This project helped me understand training as more than instruction. It is also about shaping judgment, consistency, and the kind of service mindset that guests may feel even if they never notice the training behind it.</p>
+          <p><strong>Reflection:</strong> This project made me think much more seriously about how staff behavior shapes the success of an operation. It is easy to assume that once policies and procedures are written, the operation will run the way it was designed. This assignment pushed me to think about the fact that staff are the people who actually carry those systems out, and the guest experience can be heavily influenced by how prepared, alert, and consistent they are.</p>
+
+          <div class="artifact-actions">
+            <a class="btn btn-primary" href="files/frontline-staff-training-framework.pdf" target="_blank">View Artifact</a>
+            <a class="btn btn-secondary" href="files/frontline-staff-training-framework.pdf" download>Download</a>
+          </div>
         </article>
       </div>
     </section>
 
     <section id="research">
       <h2>Research, Analysis, and Professional Communication</h2>
+      <p class="section-intro">These artifacts show how I connected academic work with professional standards, industry expectations, and communication that could actually be used in a real setting.</p>
+
       <div class="artifact-grid">
         <article class="artifact">
-          <span class="pill">Professional Training / Certification</span>
-          <h3>Crowd Manager Training Certificate</h3>
+          <div class="artifact-top">
+            <div>
+              <span class="pill">Professional Training / Certification</span>
+              <h3>Crowd Manager Training Certificate</h3>
+              <div class="artifact-meta">Industry-recognized training and safety standards</div>
+            </div>
+          </div>
+
           <p><strong>Context:</strong> Professional certification demonstrating knowledge of crowd safety principles, emergency awareness, and best practices for managing large groups in public venues.</p>
           <p><strong>My Role:</strong> I completed the training and earned the certification independently.</p>
           <p><strong>Skills Demonstrated:</strong> Professional development, crowd safety awareness, emergency response readiness, industry standards knowledge.</p>
-          <p><strong>Reflection Draft:</strong> Completing this certification gave me a different kind of perspective than a normal class assignment because it connected course concepts to industry-recognized standards. One of the things that stood out to me most was how structured crowd safety practices are and how much emphasis is placed on anticipation, observation, and early response. The certification reinforced that safety in large venues is not something that should be improvised. It relies on procedures, clear expectations, and staff who know what to look for before a situation escalates. It also showed me that professional development matters beyond just earning a credential. In this case, the certification helped me connect academic ideas about operations and risk to the types of expectations that exist in actual venue environments. That made the content feel more practical and helped me better understand the standards I would be expected to work within in the field.</p>
+          <p><strong>Reflection:</strong> Completing this certification gave me a different kind of perspective than a normal class assignment because it connected course concepts to industry-recognized standards. One of the things that stood out to me most was how structured crowd safety practices are and how much emphasis is placed on anticipation, observation, and early response. The certification reinforced that safety in large venues is not something that should be improvised.</p>
+
+          <div class="artifact-actions">
+            <a class="btn btn-primary" href="files/crowd-manager-training-certificate.pdf" target="_blank">View Artifact</a>
+            <a class="btn btn-secondary" href="files/crowd-manager-training-certificate.pdf" download>Download</a>
+          </div>
         </article>
+
         <article class="artifact">
-          <span class="pill">Professional Training Program</span>
-          <h3>Crowd Manager Training Coursework</h3>
+          <div class="artifact-top">
+            <div>
+              <span class="pill">Professional Training Program</span>
+              <h3>Crowd Manager Training Coursework</h3>
+              <div class="artifact-meta">Supporting coursework and applied safety knowledge</div>
+            </div>
+          </div>
+
           <p><strong>Context:</strong> Coursework supporting the crowd management certification covering risk identification, safety protocols, and crowd behavior in public venues.</p>
           <p><strong>My Role:</strong> I completed the coursework and training review associated with the certification process.</p>
           <p><strong>Skills Demonstrated:</strong> Risk prevention, crowd management analysis, professional communication, applied safety knowledge.</p>
-          <p><strong>Reflection Draft:</strong> The coursework behind the certification gave me more detailed insight into why crowd management requires more than just reacting once an issue becomes obvious. A major takeaway for me was how quickly crowd conditions can change and how important it is to recognize warning signs early. This material pushed me to think more carefully about crowd behavior, especially in high-capacity environments where a small disruption can grow quickly if it is not addressed. It also helped me see why many venue protocols exist in the form that they do. Before this, I may have understood those rules as general safety measures, but through the coursework I began to understand the reasoning behind them and how they are meant to function in real situations. This artifact reflects my growth in connecting structured training content to actual venue operations rather than viewing it only as theory.</p>
+          <p><strong>Reflection:</strong> The coursework behind the certification gave me more detailed insight into why crowd management requires more than just reacting once an issue becomes obvious. A major takeaway for me was how quickly crowd conditions can change and how important it is to recognize warning signs early. This material pushed me to think more carefully about crowd behavior, especially in high-capacity environments where a small disruption can grow quickly if it is not addressed.</p>
+
+          <div class="artifact-actions">
+            <a class="btn btn-primary" href="files/crowd-manager-coursework.pdf" target="_blank">View Artifact</a>
+            <a class="btn btn-secondary" href="files/crowd-manager-coursework.pdf" download>Download</a>
+          </div>
         </article>
       </div>
     </section>
 
     <section id="reflection" class="card">
-      <h2>Final Reflection Draft (Working Version)</h2>
-      <p>Looking back across the work in this program, one of the biggest changes I see is in how I approach a problem. Earlier on, I was more focused on understanding concepts and making sure I could explain them clearly. As I moved through the program, I started thinking less about simply describing how an organization or facility works and more about what I would actually do if I were responsible for the outcome. That shift seems simple, but for me it changed the way I approached almost every major assignment.</p>
-      <p>A lot of that development came from assignments that required decisions rather than summaries. In projects like the booking policy, the emergency action plan, and the event risk assessment, I was not just repeating course concepts. I had to decide what mattered most, what trade-offs were acceptable, and how different choices could affect staff, guests, and the organization. That process helped me understand that management decisions are rarely as straightforward as they look from the outside. In many cases, there is no perfect answer. There is only a choice that has to be justified based on the context, the priorities of the organization, and the realities of implementation.</p>
-      <p>Another important area of growth for me was recognizing the difference between writing a document and creating something that could actually function in practice. Earlier in the program, I often thought that if a plan was detailed and complete, then it was strong. Over time, I started to see that usefulness matters more than length. A plan has to be clear, realistic, and usable by the people who would carry it out. That became especially obvious in the emergency planning and staff training work, where the value of the document depended on whether staff could realistically follow it in a high-pressure environment.</p>
-      <p>I also developed a stronger understanding of how deeply operations shape the guest experience. Before this program, I tended to think of guest experience mostly in visible terms, such as customer service, event atmosphere, or participant enjoyment. What I understand now is that many of the things guests value most are actually produced by systems they never see, including scheduling decisions, staffing preparation, communication procedures, and risk planning. In other words, a smooth guest experience is often the result of effective operational decisions made long before the guest arrives. That perspective has changed the way I think about both facilities and events because I now pay much more attention to the operational foundation underneath the public-facing experience.</p>
-      <p>Putting this portfolio together also made something else clear to me: completing work and presenting work are not the same thing. At first, I approached the portfolio too much like an archive of assignments. Through revising it, I started to better understand that a professional portfolio should explain not just what was completed, but how the work reflects growth, decision-making, and professional direction. That has probably been one of the most useful parts of this process because it forced me to step back and look for connections across the program instead of viewing each artifact as an isolated assignment.</p>
-      <p>Overall, this portfolio reflects more than just completed coursework. It reflects how my thinking has changed during the MPRTSM program, especially in learning how to evaluate operational problems, make more intentional decisions, and connect planning to real-world outcomes. I still see areas where I can continue improving, especially in continuing to sharpen how I present and frame my work professionally, but I also think this portfolio shows a clear progression from learning concepts in class to beginning to apply them in a more practical and professional way.</p>
+      <h2>Final Reflection</h2>
+      <div class="reflection-layout">
+        <div>
+          <p>Looking back across the work in this program, one of the biggest changes I see is in how I approach a problem. Earlier on, I was more focused on understanding concepts and making sure I could explain them clearly. As I moved through the program, I started thinking less about simply describing how an organization or facility works and more about what I would actually do if I were responsible for the outcome. That shift seems simple, but for me it changed the way I approached almost every major assignment.</p>
+
+          <p>A lot of that development came from assignments that required decisions rather than summaries. In projects like the booking policy, the emergency action plan, and the event risk assessment, I was not just repeating course concepts. I had to decide what mattered most, what trade-offs were acceptable, and how different choices could affect staff, guests, and the organization. That process helped me understand that management decisions are rarely as straightforward as they look from the outside.</p>
+
+          <p>I also developed a stronger understanding of how deeply operations shape the guest experience. Before this program, I tended to think of guest experience mostly in visible terms, such as customer service, event atmosphere, or participant enjoyment. What I understand now is that many of the things guests value most are actually produced by systems they never see, including scheduling decisions, staffing preparation, communication procedures, and risk planning.</p>
+
+          <p>Putting this portfolio together also made something else clear to me: completing work and presenting work are not the same thing. At first, I approached the portfolio too much like an archive of assignments. Through revising it, I started to better understand that a professional portfolio should explain not just what was completed, but how the work reflects growth, decision-making, and professional direction.</p>
+        </div>
+
+        <aside class="reflection-points">
+          <h3>Key Growth Areas</h3>
+          <ul>
+            <li>Thinking more like a decision-maker instead of only a student</li>
+            <li>Understanding trade-offs in real operational settings</li>
+            <li>Recognizing that usability matters more than just detail</li>
+            <li>Connecting behind-the-scenes planning to guest experience</li>
+            <li>Presenting coursework as a professional narrative rather than an archive</li>
+          </ul>
+        </aside>
+      </div>
     </section>
 
-    <p class="footer">Working draft ePortfolio created for portfolio draft submission requirements.</p>
+    <p class="footer">ePortfolio draft site for MPRTSM portfolio submission.</p>
   </main>
 
   <script>
