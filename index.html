@@ -270,8 +270,7 @@
       gap: 16px;
     }
 
-    .domain-card,
-    .highlight-card {
+    .domain-card {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 16px;
@@ -280,45 +279,14 @@
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .domain-card:hover,
-    .highlight-card:hover {
+    .domain-card:hover {
       transform: translateY(-3px);
       box-shadow: var(--shadow-2);
     }
 
-    .highlight-card {
-      background: linear-gradient(180deg, #ffffff, #f9fbfe);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .highlight-card::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 5px;
-      background: linear-gradient(90deg, var(--accent), #4d89b3);
-    }
-
-    .highlight-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 10px;
-      background: var(--accent-soft);
-      color: var(--accent);
-      font-size: 1.1rem;
-      font-weight: 700;
-    }
-
     .artifact-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 18px;
     }
 
@@ -514,57 +482,18 @@
       padding: 16px;
     }
 
-    .domain-banner {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 12px;
-      color: var(--accent);
-      font-weight: 700;
-      font-size: 0.95rem;
-    }
-
-    .domain-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 0 5px rgba(31, 78, 121, 0.12);
-    }
-
     .section-divider {
       height: 1px;
       margin: 6px 0 18px;
       background: linear-gradient(90deg, rgba(31,78,121,0.15), rgba(31,78,121,0.02));
     }
 
-    .count-strip {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 14px;
-      margin-top: 18px;
-    }
-
-    .count-card {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 16px;
-      box-shadow: var(--shadow);
-    }
-
-    .count-card strong {
-      display: block;
-      color: var(--accent);
-      font-size: 1.25rem;
-      margin-bottom: 4px;
-    }
-
     @media (max-width: 900px) {
       .hero-grid,
       .intro-layout,
       .reflection-layout,
-      .resume-grid {
+      .resume-grid,
+      .artifact-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -623,7 +552,6 @@
   <nav>
     <div class="nav-wrap">
       <a href="#intro">Introduction</a>
-      <a href="#highlights">Highlights</a>
       <a href="#resume">Resume</a>
       <a href="#domains">Domains</a>
       <a href="#facility">Facility & Venue Operations</a>
@@ -681,53 +609,6 @@
             <li>Professional goal: contribute to organizations that value efficient operations, safety, access, and quality participant experiences</li>
           </ul>
         </aside>
-      </div>
-    </section>
-
-    <section id="highlights">
-      <h2>Portfolio Highlights</h2>
-      <p class="section-intro">These selected artifacts best represent my development in operational thinking, strategic decision-making, safety planning, tourism systems analysis, and professional communication.</p>
-
-      <div class="grid">
-        <div class="highlight-card">
-          <div class="highlight-icon">01</div>
-          <h3>Facility Planning</h3>
-          <p>Analyzed how layout, access, programming, and site conditions affect the practical operation of recreation spaces and who is able to use them effectively.</p>
-        </div>
-        <div class="highlight-card">
-          <div class="highlight-icon">02</div>
-          <h3>Public Engagement</h3>
-          <p>Built community input strategies that balanced accessibility, data collection, event logistics, and public trust rather than treating participation as a formality.</p>
-        </div>
-        <div class="highlight-card">
-          <div class="highlight-icon">03</div>
-          <h3>Strategic Decision-Making</h3>
-          <p>Worked through benchmarking, resource prioritization, climate resilience, and equity trade-offs in ways that required judgment, not just description.</p>
-        </div>
-        <div class="highlight-card">
-          <div class="highlight-icon">04</div>
-          <h3>Professional Communication</h3>
-          <p>Translated complex planning and research work into executive summaries, briefs, and narrative recommendations intended for practical organizational use.</p>
-        </div>
-      </div>
-
-      <div class="count-strip">
-        <div class="count-card">
-          <strong>17 artifacts</strong>
-          <span class="small">now represented across the site instead of only the original 8</span>
-        </div>
-        <div class="count-card">
-          <strong>4 organizing domains</strong>
-          <span class="small">used to show progression across operations, planning, events, and communication</span>
-        </div>
-        <div class="count-card">
-          <strong>Applied graduate work</strong>
-          <span class="small">with repeated emphasis on implementation, equity, and operational realism</span>
-        </div>
-        <div class="count-card">
-          <strong>Professional growth</strong>
-          <span class="small">framed as a narrative of decision-making rather than an archive of assignments</span>
-        </div>
       </div>
     </section>
 
@@ -828,10 +709,6 @@
     </section>
 
     <section id="facility">
-      <div class="domain-banner">
-        <span class="domain-dot"></span>
-        <span>Domain 1</span>
-      </div>
       <h2>Facility and Venue Operations</h2>
       <p class="section-intro">These artifacts show how I connected physical design, access, inventory, safety, and community use patterns to real operational outcomes such as circulation, usability, participation, staffing, and service reliability.</p>
       <div class="section-divider"></div>
@@ -920,10 +797,6 @@
     </section>
 
     <section id="strategy">
-      <div class="domain-banner">
-        <span class="domain-dot"></span>
-        <span>Domain 2</span>
-      </div>
       <h2>Strategic Planning and Organizational Management</h2>
       <p class="section-intro">These artifacts reflect how I worked through longer-term decisions involving organizational priorities, benchmarking, public value, implementation, climate resilience, and communication to decision-makers.</p>
       <div class="section-divider"></div>
@@ -1012,10 +885,6 @@
     </section>
 
     <section id="events">
-      <div class="domain-banner">
-        <span class="domain-dot"></span>
-        <span>Domain 3</span>
-      </div>
       <h2>Event Planning and Participant Experience</h2>
       <p class="section-intro">This section highlights work centered on coordination, public-facing experience, logistics, itinerary design, and the behind-the-scenes choices that shape how an event or tourism experience is actually received.</p>
       <div class="section-divider"></div>
@@ -1104,10 +973,6 @@
     </section>
 
     <section id="research">
-      <div class="domain-banner">
-        <span class="domain-dot"></span>
-        <span>Domain 4</span>
-      </div>
       <h2>Research, Analysis, and Professional Communication</h2>
       <p class="section-intro">These artifacts show how I connected research, observation, analysis, and communication in ways that are more aligned with professional planning, community development, and decision-making contexts.</p>
       <div class="section-divider"></div>
