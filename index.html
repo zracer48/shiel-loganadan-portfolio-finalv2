@@ -15,8 +15,11 @@
       --accent-soft: #e8f0f8;
       --accent-2: #2d6a4f;
       --accent-3: #f3f7fc;
+      --accent-4: #fff7ec;
+      --accent-5: #eef8f2;
       --border: #d9e1ea;
       --shadow: 0 8px 22px rgba(16,24,40,0.07);
+      --shadow-2: 0 16px 34px rgba(17, 24, 39, 0.09);
     }
 
     * { box-sizing: border-box; }
@@ -28,20 +31,51 @@
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      background: var(--bg);
+      background:
+        radial-gradient(circle at top left, rgba(31,78,121,0.06), transparent 30%),
+        radial-gradient(circle at top right, rgba(45,106,79,0.05), transparent 24%),
+        linear-gradient(180deg, #f7f9fc 0%, #f4f7fb 100%);
       color: var(--text);
       line-height: 1.65;
     }
 
     header {
-      background: linear-gradient(135deg, #12324d, #1f4e79 60%, #2f6b94);
+      background:
+        linear-gradient(135deg, rgba(18,50,77,0.98), rgba(31,78,121,0.96) 60%, rgba(47,107,148,0.92)),
+        radial-gradient(circle at top right, rgba(255,255,255,0.18), transparent 28%);
       color: #fff;
       padding: 56px 20px 42px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      right: -90px;
+      top: -70px;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      left: -70px;
+      bottom: -110px;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
     }
 
     .container {
       max-width: 1120px;
       margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
 
     .hero-grid {
@@ -57,6 +91,7 @@
       border-radius: 18px;
       padding: 20px;
       backdrop-filter: blur(4px);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.12);
     }
 
     .hero-badges {
@@ -76,6 +111,32 @@
       font-weight: 700;
     }
 
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .hero-stat {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 14px;
+      padding: 12px 14px;
+    }
+
+    .hero-stat strong {
+      display: block;
+      font-size: 1.15rem;
+      margin-bottom: 2px;
+      color: #fff;
+    }
+
+    .hero-stat span {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.88);
+    }
+
     nav {
       position: sticky;
       top: 0;
@@ -83,6 +144,7 @@
       background: rgba(255,255,255,0.97);
       border-bottom: 1px solid var(--border);
       backdrop-filter: blur(6px);
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.04);
     }
 
     .nav-wrap {
@@ -180,6 +242,28 @@
       font-size: 0.98rem;
     }
 
+    .snapshot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .snapshot-card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      background: linear-gradient(180deg, #ffffff, #f8fbff);
+      box-shadow: var(--shadow);
+    }
+
+    .snapshot-card strong {
+      display: block;
+      color: var(--accent);
+      font-size: 1.2rem;
+      margin-bottom: 4px;
+    }
+
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -193,10 +277,43 @@
       border-radius: 16px;
       padding: 18px;
       box-shadow: var(--shadow);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .domain-card:hover,
+    .highlight-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-2);
     }
 
     .highlight-card {
       background: linear-gradient(180deg, #ffffff, #f9fbfe);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .highlight-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--accent), #4d89b3);
+    }
+
+    .highlight-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 1.1rem;
+      font-weight: 700;
     }
 
     .artifact-grid {
@@ -214,6 +331,25 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .artifact::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--accent), #6fa5c9);
+    }
+
+    .artifact:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-2);
+      border-color: #c6d6e7;
     }
 
     .artifact-top {
@@ -277,11 +413,51 @@
       background: #f9fbfd;
     }
 
+    .resume-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 14px;
+    }
+
+    .resume-panel {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+    }
+
     .resume-actions {
       margin-top: 14px;
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
+    }
+
+    .skill-chip-wrap,
+    .course-chip-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .skill-chip,
+    .course-chip {
+      display: inline-block;
+      padding: 7px 11px;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: #29435d;
+    }
+
+    .course-chip {
+      background: var(--accent-soft);
+      border-color: #cadced;
+      color: var(--accent);
     }
 
     ul {
@@ -330,16 +506,72 @@
       margin: 10px 0 0 18px;
     }
 
+    .reflection-callout {
+      margin-top: 16px;
+      border: 1px solid #d8e6f3;
+      background: linear-gradient(180deg, #f7fbff, #eef6fd);
+      border-radius: 16px;
+      padding: 16px;
+    }
+
+    .domain-banner {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .domain-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 5px rgba(31, 78, 121, 0.12);
+    }
+
+    .section-divider {
+      height: 1px;
+      margin: 6px 0 18px;
+      background: linear-gradient(90deg, rgba(31,78,121,0.15), rgba(31,78,121,0.02));
+    }
+
+    .count-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .count-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .count-card strong {
+      display: block;
+      color: var(--accent);
+      font-size: 1.25rem;
+      margin-bottom: 4px;
+    }
+
     @media (max-width: 900px) {
       .hero-grid,
       .intro-layout,
-      .reflection-layout {
+      .reflection-layout,
+      .resume-grid {
         grid-template-columns: 1fr;
       }
     }
 
     @media (max-width: 800px) {
       h1 { font-size: 2rem; }
+      .hero-stats { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -350,19 +582,39 @@
         <div>
           <h1>Shiel Loganadan</h1>
           <p class="subtitle">Master’s in Parks, Recreation, Tourism and Sport Management (MPRTSM)</p>
-          <p class="subtitle">This portfolio presents my graduate work in facility and venue operations, strategic planning, event planning, risk management, participant experience, and professional communication. More importantly, it shows how my thinking developed throughout the program as I moved from explaining course concepts to making and defending decisions that reflect real professional practice.</p>
+          <p class="subtitle">This portfolio presents my graduate work in facility and venue operations, strategic planning, event planning, tourism development, public engagement, and professional communication. More importantly, it shows how my thinking developed throughout the program as I moved from explaining course concepts to making and defending decisions that reflect real professional practice.</p>
           <div class="hero-badges">
             <span class="hero-badge">Facility Operations</span>
-            <span class="hero-badge">Event Planning</span>
-            <span class="hero-badge">Risk Management</span>
+            <span class="hero-badge">Strategic Planning</span>
+            <span class="hero-badge">Event Design</span>
+            <span class="hero-badge">Tourism Development</span>
             <span class="hero-badge">Guest Experience</span>
           </div>
         </div>
 
         <div class="hero-card">
           <h3 style="margin-top:0; color:#fff;">Professional Focus</h3>
-          <p style="margin:0 0 10px;">I am especially interested in sport and recreation environments where operations, safety, and guest experience all have to work together in a visible and high-pressure setting.</p>
-          <p style="margin:0;">The artifacts in this portfolio were selected to show how I approached planning, communication, decision-making, and operational problem-solving across the program.</p>
+          <p style="margin:0 0 10px;">I am especially interested in sport, recreation, and tourism environments where operations, safety, planning, and participant experience all have to work together in a visible and high-pressure setting.</p>
+          <p style="margin:0;">The artifacts in this portfolio were selected to show how I approached planning, communication, decision-making, equity, and operational problem-solving across the program.</p>
+
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <strong>17</strong>
+              <span>portfolio artifacts included</span>
+            </div>
+            <div class="hero-stat">
+              <strong>3.91 GPA</strong>
+              <span>M.S. cumulative GPA</span>
+            </div>
+            <div class="hero-stat">
+              <strong>Dec 2027</strong>
+              <span>expected M.S. graduation</span>
+            </div>
+            <div class="hero-stat">
+              <strong>4 domains</strong>
+              <span>organized around practice and growth</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -387,16 +639,35 @@
       <h2>Professional Introduction</h2>
       <div class="intro-layout">
         <div>
-          <p>My name is Shiel Loganadan, and I am completing my Master’s in Parks, Recreation, Tourism and Sport Management (MPRTSM). I am interested in pursuing a career in sport and recreation facility operations and event management, especially in settings where planning, safety, and guest experience all need to work together at a high level.</p>
+          <p>My name is Shiel Loganadan, and I am completing my Master’s in Parks, Recreation, Tourism and Sport Management (MPRTSM). I am interested in pursuing a career in sport and recreation facility operations, event management, and broader planning roles where safety, logistics, participant experience, and organizational priorities all have to work together.</p>
 
-          <p>When I entered the program, I had a general understanding of how sport and recreation organizations function, but most of that understanding came from an outside perspective. I could usually tell when a facility seemed organized or when an event felt well run, but I did not fully understand how much planning, communication, and coordination were happening behind the scenes to create that result. One of the biggest changes for me throughout the program has been learning to think less like an observer and more like someone who is actually responsible for the outcome.</p>
+          <p>When I entered the program, I had a general understanding of how sport and recreation organizations function, but most of that understanding came from an outside perspective. I could usually tell when a facility seemed organized or when an event felt well run, but I did not fully understand how much planning, communication, analysis, and coordination were happening behind the scenes to create that result. One of the biggest changes for me throughout the program has been learning to think less like an observer and more like someone who is actually responsible for the outcome.</p>
 
-          <p>Across my coursework, I was consistently asked to do more than summarize ideas from class. I had to make choices, justify those choices, and think through the trade-offs involved in different approaches. In assignments related to facility planning, booking policies, emergency action planning, and event risk assessment, I had to decide what should be prioritized, what compromises were reasonable, and what a manager would have to consider in practice. Those decisions were not always straightforward. In many cases, I had to weigh efficiency against safety, revenue against access, or detail against usability. Working through those trade-offs made the work feel more real and helped me better understand the responsibilities involved in managing sport and recreation environments.</p>
+          <p>Across my coursework, I was repeatedly pushed beyond description. I had to decide where resources should go, which audiences were being underserved, how a plan should be framed for decision-makers, and what trade-offs were realistic in a given setting. In assignments focused on facility planning, benchmarking, public engagement, tourism development, and organizational analysis, I learned that good professional work is not just about having information. It is about selecting the right information, interpreting it clearly, and turning it into decisions that other people could actually use.</p>
 
-          <p>Another major shift in my thinking was how I came to understand guest experience. Earlier in the program, I mostly thought about experience in terms of what participants or attendees directly see, such as service, atmosphere, or enjoyment. Over time, I started to recognize that the overall quality of an experience is often shaped by things the guest never notices, including staffing structure, communication systems, emergency procedures, crowd flow, and preparation before the event even begins. That changed the way I approached my work because I began paying more attention to the operational decisions that support a smooth, safe, and well-organized experience.</p>
+          <p>Another major shift in my thinking was how I came to understand experience. Earlier in the program, I mostly thought about experience in visible terms such as service, atmosphere, or enjoyment. Over time, I started to recognize that the overall quality of an experience is often shaped by things the participant or guest never explicitly notices, including staffing structure, communication systems, accessibility, emergency procedures, route planning, timing, and preparation before the event or visit even begins. That changed the way I approached my work because I began paying more attention to the operational decisions that support a smooth, safe, and well-organized experience.</p>
 
           <div class="quote-box">
-            One of the clearest lessons I took from this program is that a strong guest experience is often built by decisions the guest never sees directly: planning, staffing, communication, preparation, and risk management.
+            One of the clearest lessons I took from this program is that strong participant and guest experiences are usually built by decisions that happen long before the public arrives: planning, staffing, sequencing, communication, access, and risk management.
+          </div>
+
+          <div class="snapshot-grid">
+            <div class="snapshot-card">
+              <strong>Planning with evidence</strong>
+              <span class="small">I became much more comfortable grounding recommendations in inventory data, LOS benchmarks, stakeholder analysis, and implementation constraints.</span>
+            </div>
+            <div class="snapshot-card">
+              <strong>Thinking like an operator</strong>
+              <span class="small">I now look more closely at how spaces, schedules, staff roles, and systems affect what happens in real settings.</span>
+            </div>
+            <div class="snapshot-card">
+              <strong>Writing for use</strong>
+              <span class="small">A major growth area for me was learning to write documents that feel usable for managers and organizations rather than just complete for a class.</span>
+            </div>
+            <div class="snapshot-card">
+              <strong>Professional narrative</strong>
+              <span class="small">This portfolio is designed to show progression, not just completion. The goal is to show how my thinking and judgment developed over time.</span>
+            </div>
           </div>
         </div>
 
@@ -404,10 +675,10 @@
           <h3>At a Glance</h3>
           <ul>
             <li>Graduate focus in sport and recreation management</li>
-            <li>Strong interest in facility operations and event environments</li>
-            <li>Repeated coursework in planning, safety, and organizational decision-making</li>
-            <li>Growth in connecting behind-the-scenes operations to guest experience</li>
-            <li>Professional goal: contribute to organizations that value efficient operations, safety, and quality participant experiences</li>
+            <li>Strong interest in facility operations, event environments, and planning</li>
+            <li>Repeated coursework in logistics, equity, safety, and communication</li>
+            <li>Experience translating coursework into executive summaries, plans, and recommendations</li>
+            <li>Professional goal: contribute to organizations that value efficient operations, safety, access, and quality participant experiences</li>
           </ul>
         </aside>
       </div>
@@ -415,23 +686,47 @@
 
     <section id="highlights">
       <h2>Portfolio Highlights</h2>
-      <p class="section-intro">These selected artifacts best represent my development in operational thinking, strategic decision-making, safety planning, and professional communication.</p>
+      <p class="section-intro">These selected artifacts best represent my development in operational thinking, strategic decision-making, safety planning, tourism systems analysis, and professional communication.</p>
+
       <div class="grid">
         <div class="highlight-card">
+          <div class="highlight-icon">01</div>
           <h3>Facility Planning</h3>
-          <p>Analyzed how physical design, layout, and programming choices affect the practical operation of recreation facilities.</p>
+          <p>Analyzed how layout, access, programming, and site conditions affect the practical operation of recreation spaces and who is able to use them effectively.</p>
         </div>
         <div class="highlight-card">
-          <h3>Emergency Planning</h3>
-          <p>Developed structured safety planning documents centered on communication flow, staff roles, and realistic implementation.</p>
+          <div class="highlight-icon">02</div>
+          <h3>Public Engagement</h3>
+          <p>Built community input strategies that balanced accessibility, data collection, event logistics, and public trust rather than treating participation as a formality.</p>
         </div>
         <div class="highlight-card">
+          <div class="highlight-icon">03</div>
           <h3>Strategic Decision-Making</h3>
-          <p>Worked through scheduling, resource allocation, benchmarking, and long-term planning decisions that required clear priorities.</p>
+          <p>Worked through benchmarking, resource prioritization, climate resilience, and equity trade-offs in ways that required judgment, not just description.</p>
         </div>
         <div class="highlight-card">
+          <div class="highlight-icon">04</div>
           <h3>Professional Communication</h3>
-          <p>Translated coursework into executive summaries, plans, and analysis that could be understood and used in professional settings.</p>
+          <p>Translated complex planning and research work into executive summaries, briefs, and narrative recommendations intended for practical organizational use.</p>
+        </div>
+      </div>
+
+      <div class="count-strip">
+        <div class="count-card">
+          <strong>17 artifacts</strong>
+          <span class="small">now represented across the site instead of only the original 8</span>
+        </div>
+        <div class="count-card">
+          <strong>4 organizing domains</strong>
+          <span class="small">used to show progression across operations, planning, events, and communication</span>
+        </div>
+        <div class="count-card">
+          <strong>Applied graduate work</strong>
+          <span class="small">with repeated emphasis on implementation, equity, and operational realism</span>
+        </div>
+        <div class="count-card">
+          <strong>Professional growth</strong>
+          <span class="small">framed as a narrative of decision-making rather than an archive of assignments</span>
         </div>
       </div>
     </section>
@@ -440,23 +735,68 @@
       <h2>Resume</h2>
       <div class="resume-box">
         <h3>Professional Resume</h3>
-        <p><strong>Shiel Loganadan</strong><br />Naples, Florida<br />Career Interest: Sport and Recreation Management, Facility Operations, Event Planning, Guest Experience</p>
-        <p><strong>Education</strong><br />Master’s in Parks, Recreation, Tourism and Sport Management</p>
+        <p><strong>Shiel Loganadan</strong><br />Naples, Florida<br />347-543-5898<br />shiel1224@gmail.com</p>
 
-        <p><strong>Professional Strengths</strong></p>
-        <ul>
-          <li>Facility and venue operations</li>
-          <li>Special event planning and coordination</li>
-          <li>Strategic planning and risk management</li>
-          <li>Professional communication and teamwork</li>
-        </ul>
+        <div class="resume-grid">
+          <div class="resume-panel">
+            <h3>Education</h3>
+            <p><strong>Master of Science in Parks, Recreation, Tourism and Sport Management</strong><br />North Carolina State University</p>
+            <ul>
+              <li>Concentration in Sport and Recreation Management</li>
+              <li>Expected Graduation: December 2027</li>
+              <li>Cumulative GPA: 3.91 / 4.00</li>
+            </ul>
 
-        <p><strong>Applied Experience</strong></p>
-        <ul>
-          <li>Developed facility planning and venue strategy projects</li>
-          <li>Created risk assessment and emergency action planning documents</li>
-          <li>Designed staff training frameworks and booking policies for sport and recreation venues</li>
-        </ul>
+            <p><strong>Bachelor of Science in Sport Management</strong><br />North Carolina State University</p>
+            <ul>
+              <li>Graduation: May 2024</li>
+              <li>Cumulative GPA: 3.86 / 4.00</li>
+            </ul>
+          </div>
+
+          <div class="resume-panel">
+            <h3>Graduate Student Project Experience</h3>
+            <p><strong>North Carolina State University</strong><br />2025 – Present</p>
+            <ul>
+              <li>Complete advanced academic and applied projects in facility planning, event operations, strategic planning, and recreation management.</li>
+              <li>Develop comprehensive planning documents, benchmarking reports, executive summaries, and agency-focused recommendations.</li>
+              <li>Analyze operational issues related to programming, safety, communication, staffing, and participant experience.</li>
+              <li>Produce written materials designed for both academic and professional audiences, with emphasis on clarity, structure, and practical application.</li>
+              <li>Apply research and analytical skills to support decision-making in sport, recreation, and public service environments.</li>
+              <li>Strengthen professional communication, organization, and problem-solving skills through long-term project development and presentation work.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="resume-grid">
+          <div class="resume-panel">
+            <h3>Relevant Coursework</h3>
+            <div class="course-chip-wrap">
+              <span class="course-chip">Facility and Program Planning</span>
+              <span class="course-chip">Sport and Recreation Management</span>
+              <span class="course-chip">Event Planning and Operations</span>
+              <span class="course-chip">Risk Management</span>
+              <span class="course-chip">Strategic Planning</span>
+              <span class="course-chip">Research and Professional Communication</span>
+            </div>
+          </div>
+
+          <div class="resume-panel">
+            <h3>Skills</h3>
+            <div class="skill-chip-wrap">
+              <span class="skill-chip">Facility and program planning</span>
+              <span class="skill-chip">Event coordination and logistics</span>
+              <span class="skill-chip">Risk awareness and operational analysis</span>
+              <span class="skill-chip">Benchmarking and recommendations</span>
+              <span class="skill-chip">Microsoft Excel, Word, &amp; PowerPoint</span>
+              <span class="skill-chip">Google Docs, Sheets, &amp; Slides</span>
+              <span class="skill-chip">Research and report writing</span>
+              <span class="skill-chip">Written and verbal communication</span>
+              <span class="skill-chip">Problem solving</span>
+              <span class="skill-chip">Team collaboration and adaptability</span>
+            </div>
+          </div>
+        </div>
 
         <div class="resume-actions">
           <a class="btn btn-primary" href="Shiel Loganadan Resume.pdf" target="_blank">View Resume / Featured Document</a>
@@ -470,45 +810,90 @@
       <div class="grid">
         <div class="domain-card">
           <h3>Facility and Venue Operations</h3>
-          <p>This domain includes work where I had to think through how facilities function on a practical level rather than just describe them in general terms. These artifacts focus on issues such as crowd movement, programming, staffing, safety, design, and operational efficiency. Through this work, I learned that decisions that seem small on paper can have a major impact once they affect real participants, guests, and employees in a live environment.</p>
+          <p>This domain includes work where I had to think through how facilities function on a practical level rather than just describe them in general terms. These artifacts focus on issues such as crowd movement, access, facility condition, staffing pressure, site usability, public input logistics, and operational efficiency. Through this work, I learned that decisions that seem small on paper can have major consequences once they affect real participants, guests, and employees in a live environment.</p>
         </div>
         <div class="domain-card">
           <h3>Strategic Planning and Organizational Management</h3>
-          <p>This domain reflects assignments where I had to think beyond a single event or task and instead consider larger priorities and long-term decisions. These projects required me to work through trade-offs involving scheduling, resource allocation, benchmarking, and organizational goals. They helped me understand that strategic planning is not just about growth or efficiency, but about deciding what an organization wants to prioritize and why.</p>
+          <p>This domain reflects assignments where I had to think beyond a single task and instead consider larger priorities, benchmarking measures, implementation limits, and long-term direction. These projects required me to work through trade-offs involving equity, climate resilience, staffing, public trust, and organizational focus. They helped me understand that strategy is not just about growth. It is about deciding what an organization should prioritize, how to justify those priorities, and how to make them measurable.</p>
         </div>
         <div class="domain-card">
           <h3>Event Planning and Participant Experience</h3>
-          <p>This domain focuses on how events are built from both an operational and participant perspective. The artifacts in this section reflect planning around logistics, safety, staffing, and overall experience design. A major takeaway for me was that successful events are usually the result of preparation that prevents problems before guests ever notice them, not just quick responses when something goes wrong.</p>
+          <p>This domain focuses on how experiences are built from both an operational and participant perspective. The artifacts in this section reflect planning around logistics, sequencing, partnerships, pricing, audience appeal, and the details that shape how an event or itinerary actually feels to the public. A major takeaway for me was that successful experiences are usually the result of preparation that prevents confusion and friction before guests ever notice it.</p>
         </div>
         <div class="domain-card">
           <h3>Research, Analysis, and Professional Communication</h3>
-          <p>This domain highlights how I developed my ability to present information in a way that is clear, usable, and better suited to professional settings. In several of these projects, I had to move away from writing only for a classroom audience and start thinking about how a manager, executive, or organization would actually use the information. That pushed me to improve not just the content of my work, but how I framed and communicated it.</p>
+          <p>This domain highlights how I developed my ability to investigate a problem, synthesize evidence, and communicate findings in a way that is clearer and more useful for professional settings. In several of these projects, I had to move away from writing only for a classroom audience and start thinking about how a manager, organization, or stakeholder would actually use the information. That pushed me to improve not just the content of my work, but how I framed it, sequenced it, and supported it.</p>
         </div>
       </div>
     </section>
 
     <section id="facility">
+      <div class="domain-banner">
+        <span class="domain-dot"></span>
+        <span>Domain 1</span>
+      </div>
       <h2>Facility and Venue Operations</h2>
-      <p class="section-intro">These artifacts show how I began connecting physical design and programming decisions to real operational outcomes such as circulation, safety, staffing, and overall usability.</p>
+      <p class="section-intro">These artifacts show how I connected physical design, access, inventory, safety, and community use patterns to real operational outcomes such as circulation, usability, participation, staffing, and service reliability.</p>
+      <div class="section-divider"></div>
 
       <div class="artifact-grid">
         <article class="artifact">
           <div class="artifact-top">
             <div>
-              <span class="pill">PRT 595 Program & Facility Planning</span>
-              <h3>Program & Facility Planning</h3>
-              <div class="artifact-meta">Facility design, planning logic, and operational application</div>
+              <span class="pill">PRT 595 Program &amp; Facility Planning</span>
+              <h3>Program &amp; Facility Planning</h3>
+              <div class="artifact-meta">Facility design, access equity, and operational application</div>
             </div>
           </div>
 
-          <p><strong>Context:</strong> This artifact focused on program and facility planning in a recreation setting, requiring attention to design, usability, and the relationship between physical space and how people actually move through and use it.</p>
-          <p><strong>My Role:</strong> I independently completed the planning analysis and developed the written recommendations.</p>
-          <p><strong>Skills Demonstrated:</strong> Facility planning, operational thinking, design analysis, and practical application.</p>
-          <p><strong>Reflection:</strong> This project pushed me to look beyond the idea of a facility as just a building or layout and instead think about it as a system that has to support real use. I had to consider how space planning affects movement, programming, and the overall experience of the people using the site. What stood out to me most was that good planning is not only about fitting things into a space. It is about making sure the facility works in a way that is practical, safe, and consistent with the goals of the organization. This assignment helped me think more critically about how planning decisions translate into actual operations.</p>
+          <p><strong>Context:</strong> This artifact focused on identifying a major service gap in the City of Naples park system and recommending realistic improvements tied to level-of-service measures, parity, and operational capacity.</p>
+          <p><strong>My Role:</strong> I completed the planning analysis independently, interpreted the access and LOS data, and developed the recommendations and reflection.</p>
+          <p><strong>Skills Demonstrated:</strong> Facility planning, operational thinking, LOS interpretation, equity analysis, and recommendation writing.</p>
+          <p><strong>Reflection:</strong> This project forced me to move from simply noticing that some parks seemed better located or better equipped than others to proving that imbalance with measurable indicators. The most important decision I had to make was not just where the problem existed, but which interventions were actually realistic in a constrained city system. Instead of defaulting to expensive new construction, I focused on smaller but operationally meaningful choices like a neighborhood park node, shared-use agreements, and expanded hours at River Park. That made me think more like a manager working within limits rather than a student proposing ideal solutions with no implementation pressure. It also helped me see how access, scheduling, and facility planning are connected much more tightly than I originally assumed.</p>
 
           <div class="artifact-actions">
-            <a class="btn btn-primary" href="Shiel Loganadan PRT 595 Program & Facility Planning.pdf" target="_blank">View Artifact</a>
-            <a class="btn btn-secondary" href="Shiel Loganadan PRT 595 Program & Facility Planning.pdf" download>Download</a>
+            <a class="btn btn-primary" href="Shiel Loganadan PRT 595 Program & Facility Planning(1).pdf" target="_blank">View Artifact</a>
+            <a class="btn btn-secondary" href="Shiel Loganadan PRT 595 Program & Facility Planning(1).pdf" download>Download</a>
+          </div>
+        </article>
+
+        <article class="artifact">
+          <div class="artifact-top">
+            <div>
+              <span class="pill">PRT 595 Existing Conditions &amp; Inventory + TPL ParkServe</span>
+              <h3>Existing Conditions &amp; Inventory + TPL ParkServe</h3>
+              <div class="artifact-meta">System inventory, mapping, and access analysis</div>
+            </div>
+          </div>
+
+          <p><strong>Context:</strong> This artifact documented the Naples park inventory and paired it with ParkServe visuals and access/need analysis in order to understand how the existing system was actually distributed.</p>
+          <p><strong>My Role:</strong> I compiled and organized the facility data, reviewed site-level characteristics, and interpreted the maps and access implications.</p>
+          <p><strong>Skills Demonstrated:</strong> Inventory analysis, facility categorization, comparative review, map interpretation, and evidence-based planning support.</p>
+          <p><strong>Reflection:</strong> One of the most useful things about this work was that it made the physical system legible. Before doing this inventory, I thought about parks more individually. Once I laid them out as a system with condition, access notes, amenities, and expansion potential, it became much easier to see how uneven the city’s service pattern really was. I had to make judgment calls about how to describe site quality and operational importance without reducing everything to a single label. That process helped me understand that inventory work is not just background data collection. It shapes the questions that later planning efforts can even ask. In that sense, this artifact taught me that good facility planning starts with disciplined observation and organization, not just recommendations.</p>
+
+          <div class="artifact-actions">
+            <a class="btn btn-primary" href="Shiel Loganadan PRT 595 Existing Conditions & Inventory + TPL ParkServe(1).pdf" target="_blank">View Artifact</a>
+            <a class="btn btn-secondary" href="Shiel Loganadan PRT 595 Existing Conditions & Inventory + TPL ParkServe(1).pdf" download>Download</a>
+          </div>
+        </article>
+
+        <article class="artifact">
+          <div class="artifact-top">
+            <div>
+              <span class="pill">PRT 595 Community Input Plan Updated</span>
+              <h3>Community Input Plan Updated</h3>
+              <div class="artifact-meta">Public engagement design, accessibility, and on-site logistics</div>
+            </div>
+          </div>
+
+          <p><strong>Context:</strong> This artifact outlined a pop-up community input event for the City of Naples designed to gather feedback on park conditions, service reliability, and climate resilience concerns.</p>
+          <p><strong>My Role:</strong> I designed the participation strategy, stakeholder approach, event activities, and survey structure.</p>
+          <p><strong>Skills Demonstrated:</strong> Public engagement planning, event logistics, survey design, accessibility planning, and stakeholder communication.</p>
+          <p><strong>Reflection:</strong> What made this assignment more challenging than it first appeared was that it required me to think about public participation as an operational event, not just a communications task. I had to consider where the event should happen, who would realistically stop to participate, how bilingual or large-print materials would affect accessibility, and how to make feedback quick enough that busy people would still engage. The biggest lesson for me was that good engagement depends on design choices just as much as good events do. If the process is inconvenient, unclear, or too generic, the city may say it asked for input without actually hearing from the people most affected. This artifact helped me understand that trust-building is not abstract. It is built through logistics, visibility, and follow-through.</p>
+
+          <div class="artifact-actions">
+            <a class="btn btn-primary" href="Shiel Loganadan PRT 595 Community Input Plan Updated(1).pdf" target="_blank">View Artifact</a>
+            <a class="btn btn-secondary" href="Shiel Loganadan PRT 595 Community Input Plan Updated(1).pdf" download>Download</a>
           </div>
         </article>
 
@@ -517,26 +902,31 @@
             <div>
               <span class="pill">PRT 595 Final Assignment</span>
               <h3>Facility Emergency and Final Planning Work</h3>
-              <div class="artifact-meta">Safety planning, structure, and real-world usability</div>
+              <div class="artifact-meta">Safety planning, system integration, and real-world usability</div>
             </div>
           </div>
 
-          <p><strong>Context:</strong> This artifact involved final planning work that required structured thinking around facility operations, safety considerations, and implementation in a realistic recreation management context.</p>
-          <p><strong>My Role:</strong> I completed the final written analysis and planning recommendations independently.</p>
-          <p><strong>Skills Demonstrated:</strong> Risk awareness, planning structure, communication, and operational judgment.</p>
-          <p><strong>Reflection:</strong> This work made me think in a much more practical way than many of my earlier assignments. It is easy to write generally about planning, but much harder to create something that could realistically be followed and used. One of the things I learned here was that a strong plan is not just detailed. It has to be clear enough that other people could carry it out effectively. That forced me to think more carefully about structure, communication, and what information is actually useful in a real setting.</p>
+          <p><strong>Context:</strong> This final planning document integrated inventory work, LOS analysis, stakeholder considerations, and strategic themes into one larger facility-focused planning product.</p>
+          <p><strong>My Role:</strong> I completed the analysis, structured the final document, and connected earlier work into a coherent final set of planning priorities.</p>
+          <p><strong>Skills Demonstrated:</strong> Integrated planning, risk awareness, document structure, communication, and operational judgment.</p>
+          <p><strong>Reflection:</strong> This assignment felt different from earlier work because I was no longer solving a single narrow problem. I had to bring multiple strands together and make sure they supported each other instead of reading like separate class exercises pasted into one file. The hardest part was sequencing the material so that the logic held: inventory to LOS, LOS to stakeholders, stakeholders to priorities, and priorities to implementation. That process taught me that a strong final plan depends as much on internal coherence as on individual ideas. I also realized that when documents become longer, clarity becomes even more important because decision-makers need to understand not just what the recommendations are, but why those recommendations emerged from the evidence.</p>
 
           <div class="artifact-actions">
-            <a class="btn btn-primary" href="Shiel Loganadan PRT 595 Final Assignment.pdf" target="_blank">View Artifact</a>
-            <a class="btn btn-secondary" href="Shiel Loganadan PRT 595 Final Assignment.pdf" download>Download</a>
+            <a class="btn btn-primary" href="Shiel Loganadan PRT 595 Final Assignment(1).pdf" target="_blank">View Artifact</a>
+            <a class="btn btn-secondary" href="Shiel Loganadan PRT 595 Final Assignment(1).pdf" download>Download</a>
           </div>
         </article>
       </div>
     </section>
 
     <section id="strategy">
+      <div class="domain-banner">
+        <span class="domain-dot"></span>
+        <span>Domain 2</span>
+      </div>
       <h2>Strategic Planning and Organizational Management</h2>
-      <p class="section-intro">These artifacts reflect how I worked through longer-term decisions involving organizational priorities, benchmarking, planning direction, and communication to decision-makers.</p>
+      <p class="section-intro">These artifacts reflect how I worked through longer-term decisions involving organizational priorities, benchmarking, public value, implementation, climate resilience, and communication to decision-makers.</p>
+      <div class="section-divider"></div>
 
       <div class="artifact-grid">
         <article class="artifact">
@@ -548,14 +938,14 @@
             </div>
           </div>
 
-          <p><strong>Context:</strong> This executive summary required me to distill a larger planning effort into a shorter document that highlighted the most important issues, priorities, and recommendations for a professional audience.</p>
+          <p><strong>Context:</strong> This executive summary required me to distill a larger planning effort into a shorter document highlighting context, mission, priorities, risks, and success measures for a professional audience.</p>
           <p><strong>My Role:</strong> I prepared the executive summary and determined how to frame the most relevant information clearly and concisely.</p>
           <p><strong>Skills Demonstrated:</strong> Executive communication, strategic thinking, concise writing, and organizational analysis.</p>
-          <p><strong>Reflection:</strong> One of the challenges in this assignment was deciding what to include and what to leave out. In classroom writing, there is often pressure to show everything you know. In a professional summary, that approach can make the document less useful. I had to think more about relevance, structure, and what a decision-maker would actually need in order to move forward. This assignment helped me improve my ability to communicate strategically rather than just comprehensively.</p>
+          <p><strong>Reflection:</strong> One of the biggest decisions in this assignment was deciding what to exclude. In a full paper, it is easier to include every justification and nuance. In an executive summary, too much detail can make the document less useful. I had to decide which ideas best represented the plan’s core direction and which evidence could be implied rather than fully unpacked. That forced me to think more seriously about audience, because city leaders do not need every background detail in order to understand a strategic direction. They need a clear sense of the problem, why it matters now, what the priorities are, and what risks could interfere. This helped me improve not just concise writing, but disciplined prioritization in communication.</p>
 
           <div class="artifact-actions">
-            <a class="btn btn-primary" href="Shiel Loganadan PRT 595 Agency Project Brief Executive Summary.pdf" target="_blank">View Artifact</a>
-            <a class="btn btn-secondary" href="Shiel Loganadan PRT 595 Agency Project Brief Executive Summary.pdf" download>Download</a>
+            <a class="btn btn-primary" href="Shiel Loganadan PRT 595 Agency Project Brief Executive Summary(1).pdf" target="_blank">View Artifact</a>
+            <a class="btn btn-secondary" href="Shiel Loganadan PRT 595 Agency Project Brief Executive Summary(1).pdf" download>Download</a>
           </div>
         </article>
 
@@ -564,28 +954,113 @@
             <div>
               <span class="pill">PRT 595 Benchmarking to Recommendations</span>
               <h3>Benchmarking to Recommendations</h3>
-              <div class="artifact-meta">Comparison, analysis, and recommendation development</div>
+              <div class="artifact-meta">Comparison, gap analysis, and recommendation development</div>
             </div>
           </div>
 
-          <p><strong>Context:</strong> This project involved comparing existing practices and using that benchmarking process to develop recommendations for future action.</p>
-          <p><strong>My Role:</strong> I conducted the analysis and translated the findings into written recommendations.</p>
-          <p><strong>Skills Demonstrated:</strong> Benchmarking, evaluation, recommendation writing, and strategic analysis.</p>
-          <p><strong>Reflection:</strong> What I found most useful in this assignment was that it forced me to move beyond description and into judgment. It was not enough to identify what other organizations were doing. I had to decide what was actually relevant, what could realistically transfer, and how those comparisons should shape recommendations. That process showed me that benchmarking is only valuable when it leads to decisions that fit the actual context of the organization rather than just copying what seems successful somewhere else.</p>
+          <p><strong>Context:</strong> This project used benchmarking tools and Naples-specific data to identify service gaps and translate those findings into practical recommendations.</p>
+          <p><strong>My Role:</strong> I conducted the analysis, interpreted the LOS measures, and translated the findings into written recommendations and performance targets.</p>
+          <p><strong>Skills Demonstrated:</strong> Benchmarking, evaluation, target setting, recommendation writing, and strategic analysis.</p>
+          <p><strong>Reflection:</strong> What I found most useful in this assignment was that it forced me to move beyond description and into judgment. It was not enough to identify what the national benchmark said or what peer standards looked like. I had to decide which gaps mattered most in Naples, which targets were realistic over a five-to-ten-year horizon, and which improvements would have the greatest effect on actual access. That made the assignment feel much closer to real strategic work, because benchmarking only becomes valuable once it helps an organization make decisions that fit its own context. I also became more aware that a recommendation is stronger when it includes a success measure, because then it becomes something that can be revisited and evaluated instead of remaining just a suggestion.</p>
 
           <div class="artifact-actions">
-            <a class="btn btn-primary" href="Shiel Loganadan PRT 595 Benchmarking to Recommendations.pdf" target="_blank">View Artifact</a>
-            <a class="btn btn-secondary" href="Shiel Loganadan PRT 595 Benchmarking to Recommendations.pdf" download>Download</a>
+            <a class="btn btn-primary" href="Shiel Loganadan PRT 595 Benchmarking to Recommendations(1).pdf" target="_blank">View Artifact</a>
+            <a class="btn btn-secondary" href="Shiel Loganadan PRT 595 Benchmarking to Recommendations(1).pdf" download>Download</a>
+          </div>
+        </article>
+
+        <article class="artifact">
+          <div class="artifact-top">
+            <div>
+              <span class="pill">PRT 595 Identifying Sources for LOS Benchmarking</span>
+              <h3>Identifying Sources for LOS Benchmarking</h3>
+              <div class="artifact-meta">Source evaluation, analytical support, and planning foundations</div>
+            </div>
+          </div>
+
+          <p><strong>Context:</strong> This artifact focused on identifying and justifying the data sources that could support credible LOS benchmarking and planning decisions for Naples.</p>
+          <p><strong>My Role:</strong> I identified the relevant sources, evaluated why they were useful, and explained how they would support later analysis.</p>
+          <p><strong>Skills Demonstrated:</strong> Research evaluation, source selection, planning support, analytical preparation, and evidence framing.</p>
+          <p><strong>Reflection:</strong> This project reminded me that strong planning often depends on work that is less visible in the final product. Before recommendations can be persuasive, the source base has to be credible, relevant, and aligned with the questions being asked. I had to think carefully about why ParkServe and NRPA metrics complemented each other instead of just listing them as reputable sources. That forced me to be more explicit about what each tool actually contributes: one helps show where inequities are, and the other helps show how well resources are being managed or delivered. I left this assignment with a better appreciation for how much professional credibility depends on methodological choices made early in a project.</p>
+
+          <div class="artifact-actions">
+            <a class="btn btn-primary" href="Shiel Loganadan PRT 595 Identifying Sources for LOS Benchmarking(1).pdf" target="_blank">View Artifact</a>
+            <a class="btn btn-secondary" href="Shiel Loganadan PRT 595 Identifying Sources for LOS Benchmarking(1).pdf" download>Download</a>
+          </div>
+        </article>
+
+        <article class="artifact">
+          <div class="artifact-top">
+            <div>
+              <span class="pill">Final Paper – City of Naples Parks &amp; Recreation Department</span>
+              <h3>Diagnosing and Reframing a City Parks &amp; Recreation Department</h3>
+              <div class="artifact-meta">Organizational diagnosis, leadership frames, and strategic redesign</div>
+            </div>
+          </div>
+
+          <p><strong>Context:</strong> This paper analyzed the City of Naples Parks &amp; Recreation Department through organizational behavior and leadership frameworks, focusing on strategy-execution gaps and mission drift.</p>
+          <p><strong>My Role:</strong> I conducted the diagnosis, applied Bolman and Deal’s four frames, and proposed a four-part solution tied to execution, workforce, and mission clarity.</p>
+          <p><strong>Skills Demonstrated:</strong> Organizational analysis, leadership framing, strategic diagnosis, synthesis, and policy-oriented writing.</p>
+          <p><strong>Reflection:</strong> This was one of the first projects that made me realize how easy it is to misread an organizational problem if you only look at it through one lens. It would have been easy to frame Naples’ issues as only staffing problems or only planning problems, but using multiple frames showed me how structure, culture, politics, and human factors interact. The most valuable insight I took from this assignment was that operational breakdowns often reflect deeper alignment issues. A department can have committed staff and still struggle if priorities are unclear, handoffs are weak, or symbolic rewards do not match the stated mission. This paper pushed me to think more holistically and made me less likely to jump to a single-cause explanation when looking at organizational problems.</p>
+
+          <div class="artifact-actions">
+            <a class="btn btn-primary" href="Shiel Loganadan - Final Paper - City of Naples Parks and Recreation Department - vFinal(1).pdf" target="_blank">View Artifact</a>
+            <a class="btn btn-secondary" href="Shiel Loganadan - Final Paper - City of Naples Parks and Recreation Department - vFinal(1).pdf" download>Download</a>
           </div>
         </article>
       </div>
     </section>
 
     <section id="events">
+      <div class="domain-banner">
+        <span class="domain-dot"></span>
+        <span>Domain 3</span>
+      </div>
       <h2>Event Planning and Participant Experience</h2>
-      <p class="section-intro">This section highlights work centered on coordination, public-facing experience, logistics, and the behind-the-scenes decisions that shape how an event is actually experienced.</p>
+      <p class="section-intro">This section highlights work centered on coordination, public-facing experience, logistics, itinerary design, and the behind-the-scenes choices that shape how an event or tourism experience is actually received.</p>
+      <div class="section-divider"></div>
 
       <div class="artifact-grid">
+        <article class="artifact">
+          <div class="artifact-top">
+            <div>
+              <span class="pill">A1 Permatourism Weekend Package – Part A</span>
+              <h3>Las Vegas Beyond the Strip: Weekend Experience Design</h3>
+              <div class="artifact-meta">Itinerary development, audience appeal, and experience flow</div>
+            </div>
+          </div>
+
+          <p><strong>Context:</strong> This artifact presented a curated weekend tourism experience in Las Vegas designed to highlight outdoor adventure, local culture, dining, sports tourism, and local markets beyond the Strip.</p>
+          <p><strong>My Role:</strong> I developed the concept, selected the featured experiences, and structured the schedule and narrative framing.</p>
+          <p><strong>Skills Demonstrated:</strong> Experience design, itinerary sequencing, audience-focused planning, and tourism product development.</p>
+          <p><strong>Reflection:</strong> What made this assignment useful was that it pushed me to think about how a participant experiences time, not just activities. I had to decide how much to include, how to balance different types of experiences, and how to make the package feel authentic without becoming scattered or overloaded. That required me to think about sequence, transitions, energy level, and what would make the itinerary feel coherent from the guest’s perspective. I learned that good event and experience design is not just about assembling strong individual components. It is about shaping a rhythm that makes the overall package feel intentional and memorable.</p>
+
+          <div class="artifact-actions">
+            <a class="btn btn-primary" href="Shiel Loganadan A1 Permatourism Weekend Package Assignment Part A(1).pdf" target="_blank">View Artifact</a>
+            <a class="btn btn-secondary" href="Shiel Loganadan A1 Permatourism Weekend Package Assignment Part A(1).pdf" download>Download</a>
+          </div>
+        </article>
+
+        <article class="artifact">
+          <div class="artifact-top">
+            <div>
+              <span class="pill">A1 Permatourism Weekend Package – Part B</span>
+              <h3>Partnership and Pricing Brief</h3>
+              <div class="artifact-meta">Partner structure, pricing logic, and value distribution</div>
+            </div>
+          </div>
+
+          <p><strong>Context:</strong> This artifact extended the weekend package by mapping stakeholders across tourism zones and outlining pricing, fees, incentives, and community revenue flow.</p>
+          <p><strong>My Role:</strong> I identified the partnership structure, set the package pricing approach, and explained how spending would circulate through local organizations and microentrepreneurs.</p>
+          <p><strong>Skills Demonstrated:</strong> Partnership analysis, pricing logic, stakeholder mapping, and revenue framing.</p>
+          <p><strong>Reflection:</strong> This project made me think more concretely about the business side of experience design. It was not enough for the package to sound interesting. It also needed to be structured in a way that made sense for hotels, guides, restaurants, vendors, and visitors at the same time. The biggest lesson for me was that pricing is really a strategic communication tool as much as a financial number. It signals value, determines accessibility, and affects whether partners see the arrangement as worthwhile. Working through that helped me understand how event planning and partnership development are closely connected, especially when the goal is to create experiences that feel authentic while still being financially viable.</p>
+
+          <div class="artifact-actions">
+            <a class="btn btn-primary" href="Shiel Loganadan A1 Permatourism Weekend Package Assignment Part B(1).pdf" target="_blank">View Artifact</a>
+            <a class="btn btn-secondary" href="Shiel Loganadan A1 Permatourism Weekend Package Assignment Part B(1).pdf" download>Download</a>
+          </div>
+        </article>
+
         <article class="artifact">
           <div class="artifact-top">
             <div>
@@ -595,14 +1070,14 @@
             </div>
           </div>
 
-          <p><strong>Context:</strong> This artifact focused on the planning and presentation of a partnership event, including how the event would be positioned, communicated, and structured for participants.</p>
-          <p><strong>My Role:</strong> I developed the event concept, planning details, and written presentation of the event.</p>
-          <p><strong>Skills Demonstrated:</strong> Event planning, communication, coordination, and audience-focused design.</p>
-          <p><strong>Reflection:</strong> This assignment made me think more carefully about how event planning extends beyond the schedule itself. I had to consider how the event would be presented to participants, what details would matter most to them, and how the planning choices would affect the experience. It reinforced that strong events are not built only by having activities in place. They depend on organization, clarity, and preparation that make the event feel intentional from the participant’s perspective.</p>
+          <p><strong>Context:</strong> This artifact developed a community-based culinary tourism event connecting a Las Vegas food microentrepreneur with a hospitality partner.</p>
+          <p><strong>My Role:</strong> I created the event concept, structured the ticketed experience, and articulated the value proposition for both partners and participants.</p>
+          <p><strong>Skills Demonstrated:</strong> Event planning, communication, coordination, partnership thinking, and audience-focused design.</p>
+          <p><strong>Reflection:</strong> What I appreciated most in this assignment was that it required me to think simultaneously about the guest experience and the business incentives of the partners involved. I had to make choices about price, format, event length, and what should be included in the ticket so that the event would feel worthwhile without becoming too complicated to execute. The assignment also made me think more carefully about what makes an event feel intentional. Small decisions such as the order of arrival, introduction, demonstration, serving, and networking time shape how participants interpret the professionalism and quality of the experience. That reinforced for me that event planning is not just assembling components. It is managing a sequence of impressions.</p>
 
           <div class="artifact-actions">
-            <a class="btn btn-primary" href="Shiel Loganadan A5 Eventbrite partnership event.pdf" target="_blank">View Artifact</a>
-            <a class="btn btn-secondary" href="Shiel Loganadan A5 Eventbrite partnership event.pdf" download>Download</a>
+            <a class="btn btn-primary" href="Shiel Loganadan A5 Eventbrite partnership event(1).pdf" target="_blank">View Artifact</a>
+            <a class="btn btn-secondary" href="Shiel Loganadan A5 Eventbrite partnership event(1).pdf" download>Download</a>
           </div>
         </article>
 
@@ -611,26 +1086,31 @@
             <div>
               <span class="pill">A4 IT4Dev Assignment</span>
               <h3>Operational Planning and Development Assignment</h3>
-              <div class="artifact-meta">Planning detail, structure, and implementation thinking</div>
+              <div class="artifact-meta">Destination information design and applied planning</div>
             </div>
           </div>
 
-          <p><strong>Context:</strong> This assignment required structured planning and development work that connected course concepts to a more applied operational setting.</p>
-          <p><strong>My Role:</strong> I completed the assignment independently and developed the written planning approach.</p>
-          <p><strong>Skills Demonstrated:</strong> Organization, planning, applied analysis, and written communication.</p>
-          <p><strong>Reflection:</strong> What stood out to me in this project was how much implementation matters. It is one thing to describe a strong idea, but another to think through how that idea would actually be carried out. This assignment pushed me to be more specific and more practical in how I organized information and connected planning concepts to an applied setting. That helped me become more aware of the gap between having an idea and making that idea workable.</p>
+          <p><strong>Context:</strong> This assignment explored how user-generated and digital platform tools can shape tourism experiences, destination discovery, and microentrepreneur visibility.</p>
+          <p><strong>My Role:</strong> I completed the destination mapping, platform analysis, and written explanation of how information technology supports tourism development.</p>
+          <p><strong>Skills Demonstrated:</strong> Organization, digital tourism thinking, applied analysis, and written communication.</p>
+          <p><strong>Reflection:</strong> This project stood out because it helped me think about participant experience before a visitor ever arrives at a destination. The map, reviews, and listing tools were all forms of experience design in a broader sense because they shape what people discover, trust, and choose. I had to think more practically about how digital information influences movement, visibility, and economic opportunity. That made me more aware that operational planning is not only physical. Information systems also organize behavior. The assignment helped me connect marketing, technology, and participant decision-making in a way I had not fully considered before.</p>
 
           <div class="artifact-actions">
-            <a class="btn btn-primary" href="Shiel Loganadan A4 IT4Dev Assignment.pdf" target="_blank">View Artifact</a>
-            <a class="btn btn-secondary" href="Shiel Loganadan A4 IT4Dev Assignment.pdf" download>Download</a>
+            <a class="btn btn-primary" href="Shiel Loganadan A4 IT4Dev Assignment(1).pdf" target="_blank">View Artifact</a>
+            <a class="btn btn-secondary" href="Shiel Loganadan A4 IT4Dev Assignment(1).pdf" download>Download</a>
           </div>
         </article>
       </div>
     </section>
 
     <section id="research">
+      <div class="domain-banner">
+        <span class="domain-dot"></span>
+        <span>Domain 4</span>
+      </div>
       <h2>Research, Analysis, and Professional Communication</h2>
-      <p class="section-intro">These artifacts show how I connected research, analysis, and communication in ways that are more aligned with professional planning and decision-making contexts.</p>
+      <p class="section-intro">These artifacts show how I connected research, observation, analysis, and communication in ways that are more aligned with professional planning, community development, and decision-making contexts.</p>
+      <div class="section-divider"></div>
 
       <div class="artifact-grid">
         <article class="artifact">
@@ -638,38 +1118,98 @@
             <div>
               <span class="pill">PRT 595 Case Study Comprehensive Plan</span>
               <h3>Case Study Comprehensive Plan</h3>
-              <div class="artifact-meta">Integrated planning, analysis, and synthesis</div>
+              <div class="artifact-meta">Integrated planning, synthesis, and communication</div>
             </div>
           </div>
 
-          <p><strong>Context:</strong> This case study required a more comprehensive planning approach that pulled together multiple types of information and translated them into an organized plan.</p>
+          <p><strong>Context:</strong> This case study required a comprehensive planning approach that pulled together inventory, LOS, stakeholder, and implementation material into an organized professional plan.</p>
           <p><strong>My Role:</strong> I completed the analysis and developed the final written plan.</p>
           <p><strong>Skills Demonstrated:</strong> Research synthesis, long-form planning, analysis, and professional communication.</p>
-          <p><strong>Reflection:</strong> This was one of the assignments that most clearly showed me the difference between collecting information and actually using it well. I had to organize multiple layers of material and shape them into something coherent enough to function as a plan rather than just a summary. That required more judgment than I expected. I had to think about what mattered most, how the pieces related to each other, and how to communicate them in a way that felt usable instead of overly academic.</p>
+          <p><strong>Reflection:</strong> This was one of the assignments that most clearly showed me the difference between collecting information and actually using it well. I had to organize multiple layers of material and shape them into something coherent enough to function as a plan rather than just a summary. That required more judgment than I expected because I had to decide what mattered most, how the pieces related to each other, and how to communicate them in a way that felt usable instead of overly academic. The process improved my confidence in working with larger documents and helped me better understand how structure itself can support professional credibility.</p>
 
           <div class="artifact-actions">
-            <a class="btn btn-primary" href="Shiel Loganadan PRT 595 Case Study Comprehensive Plan.pdf" target="_blank">View Artifact</a>
-            <a class="btn btn-secondary" href="Shiel Loganadan PRT 595 Case Study Comprehensive Plan.pdf" download>Download</a>
+            <a class="btn btn-primary" href="Shiel Loganadan PRT 595 Case Study Comprehensive Plan(1).pdf" target="_blank">View Artifact</a>
+            <a class="btn btn-secondary" href="Shiel Loganadan PRT 595 Case Study Comprehensive Plan(1).pdf" download>Download</a>
           </div>
         </article>
 
         <article class="artifact">
           <div class="artifact-top">
             <div>
-              <span class="pill">PRT 595 Identifying Sources for LOS Benchmarking</span>
-              <h3>Identifying Sources for LOS Benchmarking</h3>
-              <div class="artifact-meta">Source evaluation, analytical support, and research foundations</div>
+              <span class="pill">A2 Microentrepreneur Case Study</span>
+              <h3>Microentrepreneur Case Study</h3>
+              <div class="artifact-meta">Observation, critique, and tourism experience analysis</div>
             </div>
           </div>
 
-          <p><strong>Context:</strong> This artifact focused on identifying and evaluating sources that could support benchmarking and planning decisions.</p>
-          <p><strong>My Role:</strong> I identified the relevant sources, organized them, and explained how they would support later analysis.</p>
-          <p><strong>Skills Demonstrated:</strong> Research evaluation, source selection, planning support, and analytical preparation.</p>
-          <p><strong>Reflection:</strong> This project reminded me that good planning depends heavily on the quality of the information behind it. I had to think carefully about what kinds of sources were actually useful and how they would contribute to later decision-making. That made me more aware of how much of strong professional work depends on groundwork that may not be obvious in the final product. It also improved my ability to think more critically about where planning information comes from and how reliable it really is.</p>
+          <p><strong>Context:</strong> This artifact documented a participant observation experience with a Naples-based eco-tour microentrepreneur, including field notes, booking critique, and analysis of the guide’s assets.</p>
+          <p><strong>My Role:</strong> I completed the observation, documented the experience, and analyzed both the guest-facing and behind-the-scenes elements of the business.</p>
+          <p><strong>Skills Demonstrated:</strong> Observation, experiential analysis, critique, field documentation, and reflective writing.</p>
+          <p><strong>Reflection:</strong> This assignment helped me sharpen my ability to notice operational details that would be easy to overlook as a casual participant. I had to pay attention not only to what the guide said, but also to how the experience was structured, how safety expectations were communicated, and where the booking process supported or created friction for the guest. What I learned most from this artifact was that small businesses often create value through knowledge, clarity, and personalization rather than scale. It also helped me think more critically about how service quality can be strong even when resources are limited, as long as the experience is organized in a way that feels intentional and informative.</p>
 
           <div class="artifact-actions">
-            <a class="btn btn-primary" href="Shiel Loganadan PRT 595 Identifying Sources for LOS Benchmarking.pdf" target="_blank">View Artifact</a>
-            <a class="btn btn-secondary" href="Shiel Loganadan PRT 595 Identifying Sources for LOS Benchmarking.pdf" download>Download</a>
+            <a class="btn btn-primary" href="Shiel Loganadan A2 Microentrepreneur Case Study(1).pdf" target="_blank">View Artifact</a>
+            <a class="btn btn-secondary" href="Shiel Loganadan A2 Microentrepreneur Case Study(1).pdf" download>Download</a>
+          </div>
+        </article>
+
+        <article class="artifact">
+          <div class="artifact-top">
+            <div>
+              <span class="pill">A3 Oral History of a Tourism Microentrepreneur</span>
+              <h3>Oral History of a Tourism Microentrepreneur</h3>
+              <div class="artifact-meta">Interviewing, narrative capture, and small business insight</div>
+            </div>
+          </div>
+
+          <p><strong>Context:</strong> This oral history captured the story of a Naples charter fishing microentrepreneur and explored how seasonality, risk, passion, and entrepreneurship intersect in tourism.</p>
+          <p><strong>My Role:</strong> I conducted the interview, shaped the narrative, and framed the story within a tourism and entrepreneurship context.</p>
+          <p><strong>Skills Demonstrated:</strong> Interviewing, listening, narrative writing, qualitative interpretation, and professional communication.</p>
+          <p><strong>Reflection:</strong> One of the strongest lessons I took from this assignment was the value of listening carefully before trying to interpret. It would have been easy to reduce the interview to a simple success story, but the more interesting part was hearing how much of the business depended on seasonality, weather uncertainty, maintenance, referrals, and behind-the-scenes work that customers rarely see. That made the oral history more than a profile. It became a way to understand tourism labor and entrepreneurship from the perspective of someone actually living it. The assignment improved my ability to communicate other people’s experiences responsibly and reminded me that good analysis often starts with careful listening rather than immediate judgment.</p>
+
+          <div class="artifact-actions">
+            <a class="btn btn-primary" href="Shiel Loganadan A3 Oral History of a tourism microentrepreneur(2).pdf" target="_blank">View Artifact</a>
+            <a class="btn btn-secondary" href="Shiel Loganadan A3 Oral History of a tourism microentrepreneur(2).pdf" download>Download</a>
+          </div>
+        </article>
+
+        <article class="artifact">
+          <div class="artifact-top">
+            <div>
+              <span class="pill">A6 Economic Impact of Tourism Assignment</span>
+              <h3>Economic Impact of Tourism</h3>
+              <div class="artifact-meta">Comparative analysis, public revenue, and destination strategy</div>
+            </div>
+          </div>
+
+          <p><strong>Context:</strong> This assignment analyzed tourism’s economic impact in North Carolina and Wake County, then compared those patterns to Las Vegas and discussed how tourism revenues might support equitable and sustainable community development.</p>
+          <p><strong>My Role:</strong> I completed the comparative analysis and developed the policy-oriented discussion focused on the Las Vegas client context.</p>
+          <p><strong>Skills Demonstrated:</strong> Economic interpretation, comparative reasoning, policy analysis, and analytical writing.</p>
+          <p><strong>Reflection:</strong> This project helped me move beyond repeating large tourism numbers and instead think about what those numbers actually imply. A destination can show strong visitor spending and still face questions about vulnerability, dependency, and who really benefits from that activity. Comparing North Carolina and Las Vegas made that especially clear because the two places illustrate different levels of tourism reliance and risk. The most useful lesson for me was that economic impact data becomes more meaningful when it is tied to governance questions. That helped me see tourism analysis less as a set of impressive statistics and more as a way to ask who gains, where money circulates, and what kind of development a destination is actually supporting.</p>
+
+          <div class="artifact-actions">
+            <a class="btn btn-primary" href="Shiel Loganadan A6 Economic impact of tourism assignment(1).pdf" target="_blank">View Artifact</a>
+            <a class="btn btn-secondary" href="Shiel Loganadan A6 Economic impact of tourism assignment(1).pdf" download>Download</a>
+          </div>
+        </article>
+
+        <article class="artifact">
+          <div class="artifact-top">
+            <div>
+              <span class="pill">A7 Permatourism Destination Audit</span>
+              <h3>Permatourism Destination Audit</h3>
+              <div class="artifact-meta">System critique, stakeholder mapping, and development strategy</div>
+            </div>
+          </div>
+
+          <p><strong>Context:</strong> This destination audit evaluated Las Vegas through a Permatourism lens, examining branding, stakeholder integration, community participation, and microentrepreneur development.</p>
+          <p><strong>My Role:</strong> I completed the audit, analyzed the destination system, and proposed strategic improvements tied to inclusion and sustainability.</p>
+          <p><strong>Skills Demonstrated:</strong> System mapping, destination critique, stakeholder analysis, and recommendation development.</p>
+          <p><strong>Reflection:</strong> What I found most valuable in this assignment was that it forced me to look at a very successful destination and still ask hard questions about whose interests its system is really serving. It would have been easy to treat Las Vegas as successful simply because of its scale and visibility, but the Permatourism framework pushed me to evaluate inclusion, leakage, and the relationship between major tourism actors and smaller community businesses. That changed the way I think about destination success. I came away from the project with a stronger understanding that strong branding and high visitation do not automatically mean a tourism system is balanced or equitable. For me, that was an important shift from admiring scale to analyzing structure.</p>
+
+          <div class="artifact-actions">
+            <a class="btn btn-primary" href="Shiel Loganadan A7 Permatourism Destination Audit(1).pdf" target="_blank">View Artifact</a>
+            <a class="btn btn-secondary" href="Shiel Loganadan A7 Permatourism Destination Audit(1).pdf" download>Download</a>
           </div>
         </article>
       </div>
@@ -679,26 +1219,37 @@
       <h2>Final Reflection</h2>
       <div class="reflection-layout">
         <div>
-          <p>Looking back across the work in this program, one of the biggest changes I see is in how I approach a problem. Earlier on, I was more focused on understanding concepts and making sure I could explain them clearly. As I moved through the program, I started thinking less about simply describing how an organization or facility works and more about what I would actually do if I were responsible for the outcome. That shift may sound subtle, but for me it changed the way I approached almost every major assignment.</p>
+          <p>Looking back across the work in this program, one of the biggest changes I see is in how I approach a problem. Earlier on, I was more focused on understanding concepts and making sure I could explain them clearly. As I moved through the program, I started thinking less about simply describing how an organization, event, or facility works and more about what I would actually do if I were responsible for the outcome. That shift may sound subtle, but for me it changed the way I approached almost every major assignment.</p>
 
-          <p>A lot of that development came from assignments that required decisions rather than summaries. In projects involving planning, benchmarking, event development, and organizational analysis, I was not just repeating course concepts. I had to decide what mattered most, what trade-offs were acceptable, and how different choices could affect participants, staff, and the organization itself. That process helped me understand that management decisions are rarely as simple as they appear from the outside. In many cases, there is no perfect answer. There is only a decision that has to be justified based on context, priorities, and what is realistic to implement.</p>
+          <p>A lot of that development came from assignments that required decisions rather than summaries. In projects involving planning, benchmarking, event development, public engagement, tourism analysis, and organizational diagnosis, I was not just repeating course concepts. I had to decide what mattered most, which audiences were being underserved, what kinds of recommendations were realistic, and how different choices would affect participants, staff, partners, and communities. That process helped me understand that professional judgment often matters more than simply having a lot of information.</p>
 
-          <p>Another important area of growth for me was recognizing the difference between writing a document and creating something that could actually function in practice. Earlier in the program, I often thought that if a plan was detailed and complete, then it was strong. Over time, I came to see that usefulness matters more than length. A plan has to be clear, realistic, and usable by the people who would carry it out. That became especially obvious in assignments involving facility planning, executive communication, and planning recommendations, where the value of the work depended not just on whether it was thorough, but on whether it could realistically guide action.</p>
+          <p>One clear pattern across these artifacts is that my thinking became more implementation-oriented over time. In earlier work, I tended to focus on whether an idea was strong in theory. In later work, I paid more attention to whether it could actually be carried out by real people under real constraints. That included budget limits, staffing shortages, political visibility, accessibility needs, timing, and communication clarity. I now understand much more clearly that a plan is only useful if the people receiving it can interpret it, trust it, and act on it.</p>
 
-          <p>I also developed a stronger understanding of how deeply operations shape the participant or guest experience. Before this program, I mostly thought of experience in visible terms, such as customer service, atmosphere, or enjoyment. What I understand now is that many of the things people value most are actually produced by systems they never see, including planning decisions, staffing preparation, communication procedures, scheduling, and risk management. A smooth experience is often the result of effective operational choices made long before the participant arrives.</p>
+          <p>Another important area of growth for me was recognizing the relationship between operations and experience. Before this program, I mostly thought of experience in visible terms, such as atmosphere, service, or enjoyment. What I understand now is that many of the things people value most are actually produced by systems they never see directly, including planning decisions, staffing preparation, communication procedures, scheduling, accessibility choices, and risk management. A smooth experience is often the result of effective operational choices made long before the participant arrives.</p>
 
-          <p>Putting this portfolio together also made something else clear to me: completing work and presenting work are not the same thing. At first, I approached the portfolio too much like an archive of assignments. Revising it pushed me to think more intentionally about how the artifacts connect and what they say about my professional growth. That process helped me see the portfolio less as a checklist and more as a narrative about how my thinking developed throughout the program.</p>
+          <p>My work on Naples in particular helped me become more analytical about equity, access, and public value. I moved from making general claims about fairness or service quality to identifying measurable gaps, locating them spatially, and connecting them to groups of people who would feel those effects most directly. That was an important shift because it made my planning work more grounded. It also made me more aware that professional recommendations gain strength when they can show who benefits, how improvement would be measured, and why the recommendation fits the actual setting.</p>
 
-          <p>Overall, this portfolio reflects more than completed coursework. It reflects how my thinking has changed during the MPRTSM program, especially in learning how to evaluate operational problems, make more intentional decisions, and connect planning to real-world outcomes. I still see areas where I can continue improving, but I also think this work shows a clear progression from learning concepts in class to beginning to apply them in a more practical and professional way.</p>
+          <p>The tourism and microentrepreneurship artifacts added a different but equally important layer to my growth. They made me think more carefully about the relationship between experience design, local participation, and economic structure. I learned that strong destinations are not just those that attract people. They are also those that create meaningful pathways for local businesses and communities to participate in and benefit from that success. That perspective expanded how I think about events and tourism experiences, because I now pay more attention to whose stories are being centered, who captures value, and how partnerships can be structured more intentionally.</p>
+
+          <p>Putting this portfolio together also made something else clear to me: completing work and presenting work are not the same thing. At first, I approached the portfolio too much like an archive of assignments. Revising it pushed me to think more intentionally about how the artifacts connect and what they collectively say about my professional growth. That process helped me see the portfolio less as a checklist and more as a narrative about how my thinking developed throughout the program.</p>
+
+          <p>Overall, this portfolio reflects more than completed coursework. It reflects how my thinking has changed during the MPRTSM program, especially in learning how to evaluate operational problems, build evidence-based recommendations, communicate more strategically, and connect planning to real-world outcomes. I still see areas where I can continue improving, but I also think this work shows a clear progression from learning concepts in class to beginning to apply them in a more practical, analytical, and professional way.</p>
+
+          <div class="reflection-callout">
+            <strong style="color: var(--accent);">What this portfolio now represents:</strong>
+            <p style="margin: 8px 0 0;">More than anything, the work collected here shows that my growth was not just in writing better papers. It was in learning how to make clearer decisions, ask better questions, justify trade-offs, and present information in a way that another person could actually use.</p>
+          </div>
         </div>
 
         <aside class="reflection-points">
           <h3>Key Growth Areas</h3>
           <ul>
             <li>Thinking more like a decision-maker instead of only a student</li>
-            <li>Understanding trade-offs in real operational settings</li>
+            <li>Understanding trade-offs in real operational and planning settings</li>
             <li>Recognizing that usability matters more than just detail</li>
-            <li>Connecting behind-the-scenes planning to guest experience</li>
+            <li>Connecting behind-the-scenes planning to guest and participant experience</li>
+            <li>Using data and benchmarks to support equity-focused recommendations</li>
+            <li>Writing for professional audiences with clearer structure and purpose</li>
             <li>Presenting coursework as a professional narrative rather than an archive</li>
           </ul>
         </aside>
